@@ -68,7 +68,6 @@ const ShoppingList: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
                 />
                 <InputText
                     type="number"
-                    value={budgetValue}
                     onChange={(e) => setBudgetValue(parseInt(e.target.value, 10))}
                     placeholder="€"  // Placeholder with euro symbol
                     min={1}

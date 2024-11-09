@@ -3,10 +3,8 @@ import { InputText } from 'primereact/inputtext';
 import { InputNumber } from 'primereact/inputnumber';
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
-import 'primereact/resources/themes/saga-blue/theme.css';
-import 'primereact/resources/primereact.min.css';
-import 'primeicons/primeicons.css';
 import { Card } from 'primereact/card';
+import { Divider } from 'primereact/divider';
 import 'src/styles/TripPlan/Activities.scss'; // Import custom CSS
 import { useStateTogether } from 'react-together';
 
@@ -52,8 +50,9 @@ const Activities: React.FC = () => {
     };
 
     return (
-        <Card title="Activities" className="p-shadow-5 destiny-card">
+        <Card title="Activities" className="p-shadow-5 " style={{ marginBottom: '1rem' }}>
             <div className="destiny-container p-fluid">
+                {/* Activity Name */}
                 <div className="p-field destiny-field">
                     <label htmlFor="activityName" className="p-d-block">Activity Name</label>
                     <InputText
@@ -64,6 +63,8 @@ const Activities: React.FC = () => {
                         placeholder="Enter activity name"
                     />
                 </div>
+
+                {/* Activity Duration */}
                 <div className="p-field destiny-field">
                     <label htmlFor="duration" className="p-d-block">Duration (hours)</label>
                     <InputNumber
@@ -74,6 +75,8 @@ const Activities: React.FC = () => {
                         placeholder="Enter duration"
                     />
                 </div>
+
+                {/* Activity Cost */}
                 <div className="p-field destiny-field">
                     <label htmlFor="cost" className="p-d-block">Cost ($)</label>
                     <InputNumber
@@ -86,6 +89,8 @@ const Activities: React.FC = () => {
                         currency="USD"
                     />
                 </div>
+
+                {/* Effort Level */}
                 <div className="p-field destiny-field">
                     <label htmlFor="effort" className="p-d-block">Effort Level</label>
                     <Dropdown
@@ -97,6 +102,8 @@ const Activities: React.FC = () => {
                         className="p-dropdown-lg p-d-block"
                     />
                 </div>
+
+                {/* Submit Button */}
                 <div className="destiny-button-container p-d-flex p-jc-center p-mt-3">
                     <Button
                         label="Submit"
@@ -104,6 +111,8 @@ const Activities: React.FC = () => {
                         className="p-button-rounded p-button-primary"
                     />
                 </div>
+
+                {/* Display Activities List */}
                 {activities.length > 0 && (
                     <div className="p-mt-3 destiny-info p-d-flex p-flex-column p-ai-center">
                         <h3 className="p-mb-2">Activities List:</h3>

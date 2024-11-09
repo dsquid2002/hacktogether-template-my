@@ -66,6 +66,12 @@
     margin: 0;
 }
 
+.destiny-container {
+    background-color: #f9f9f9; // Light grey background
+    padding: 1rem; // Optional: Add some padding for better spacing
+    border-radius: 5px; //  Optional: Add rounded corners
+}
+
 .activity-list li {
     display: flex;
     align-items: center;
@@ -74,6 +80,7 @@
     padding: 0.5em;
     border: 1px solid #ddd;
     border-radius: 8px;
+    width: 100%; /* Added this line */
 }
 
 .activity-list li .p-text-bold {

@@ -17,7 +17,7 @@ const Destiny: React.FC = () => {
     };
 
     return (
-        <Card title="Destination" className="p-shadow-5 destiny-card">
+        <Card title="Destination" className="p-shadow-5 " style={{ marginBottom: '1rem' }}>
             <div className="destiny-container p-fluid">
                 <div className="p-field destiny-field">
                     <label htmlFor="destination" className="p-d-block">Where to? &#9992; </label>

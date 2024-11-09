@@ -60,7 +60,7 @@ const Dates = () => {
     };
 
     return (
-        <Card title="Trip Plan" className="p-shadow-5 p-mt-4 dates-card">
+        <Card title="Dates" className="p-shadow-5 " style={{ marginBottom: '1rem' }}>
             <div className="dates-container">
                 <div className="p-field dates-field">
                     <label htmlFor="startDate">Start Date:</label>
