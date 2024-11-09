@@ -12,7 +12,7 @@ const Transports: React.FC = () => {
     return (
         <div className="transports-card"> {/* Applying the custom card class */}
             <div className="transports-container">
-                <h2 className="transports-header">Select Your Transport</h2> {/* Header */}
+                <h2 className="transports-header">Select Transport</h2> {/* Header */}
                 
                 {/* Horizontal layout for radio buttons */}
                 <div className="transports-field-container">

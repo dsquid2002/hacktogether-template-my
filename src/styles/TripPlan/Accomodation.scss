@@ -32,7 +32,6 @@
     color: #333;
     font-family: 'Roboto', sans-serif;
     font-weight: 600;
-    text-transform: uppercase;
 }
 
 /* Container for the radio buttons */
@@ -65,6 +64,8 @@
 .accomodation-field label {
     margin-left: 0.5em;
     color: #333;
+    font-family: 'Arial', sans-serif;
+
 }
 
 /* Info section for the selected accommodation */
@@ -74,6 +75,8 @@
     font-size: 1.2rem;
     color: #555;
     font-weight: 500;
+    font-family: 'Arial', sans-serif;
+    
 }
 
 /* Custom radio button styles */
