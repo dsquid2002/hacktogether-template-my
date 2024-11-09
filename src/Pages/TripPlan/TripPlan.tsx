@@ -30,8 +30,6 @@ const App: React.FC = () => {
         <Transports />
         <div style={{ marginBottom: '10px' }}></div>
         <Accomodation />
-        <div style={{ marginBottom: '10px' }}></div>
-        <Observations />
       </div>
 
       {/* Right Section (30%) for AddPeople */}
@@ -43,6 +41,8 @@ const App: React.FC = () => {
         }}
       >
         <AddPeople id={1} name="Who's Joining?" onDelete={handleDelete} />
+        <div style={{ marginBottom: '10px' }}></div>
+        <Observations />
       </div>
     </div>
   );

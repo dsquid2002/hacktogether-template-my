@@ -7,24 +7,16 @@ import 'primeicons/primeicons.css';
 import { Card } from 'primereact/card';
 import 'src/styles/TripPlan/Observations.scss'; // Import custom CSS
 
-interface Observation {
-    name: string;
-    text: string;
-}
-
 const Observations: React.FC = () => {
-    const [name, setName] = useState('');
     const [observation, setObservation] = useState('');
-    const [observations, setObservations] = useState<Observation[]>([]);
+    const [observations, setObservations] = useState<string[]>([]);
 
     const handleSubmit = () => {
-        if (name && observation) {
-            const newObservation: Observation = { name, text: observation };
-            setObservations([...observations, newObservation]);
-            setName('');
+        if (observation) {
+            setObservations([...observations, observation]);
             setObservation('');
         } else {
-            alert('Please fill out both fields before submitting.');
+            alert('Please enter an observation before submitting.');
         }
     };
 
@@ -36,16 +28,6 @@ const Observations: React.FC = () => {
     return (
         <Card title="Observations" className="p-shadow-5 destiny-card">
             <div className="destiny-container p-fluid">
-                <div className="p-field destiny-field">
-                    <label htmlFor="name" className="p-d-block">Name</label>
-                    <InputText
-                        id="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        className="p-inputtext-lg p-d-block"
-                        placeholder="Enter your name"
-                    />
-                </div>
                 <div className="p-field destiny-field">
                     <label htmlFor="observation" className="p-d-block">Observation</label>
                     <InputText
@@ -69,9 +51,7 @@ const Observations: React.FC = () => {
                         <ul className="observation-list">
                             {observations.map((obs, index) => (
                                 <li key={index} className="p-d-flex p-jc-between p-ai-center">
-                                    <span className="p-text-bold">
-                                        <strong>{obs.name}:</strong> {obs.text}
-                                    </span>
+                                    <span className="p-text-bold">{obs + " "}</span>
                                     <Button
                                         icon="pi pi-trash"
                                         className="p-button-rounded p-button-danger p-button-sm delete-button"
