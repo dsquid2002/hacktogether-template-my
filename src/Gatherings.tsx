@@ -1,10 +1,12 @@
 import React from 'react';
 import { useStateTogether } from 'react-together';
 import { useState } from 'react';
+import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { Divider } from 'primereact/divider';
 import styles from './styles/Gatherings/Gatherings.module.scss'; // Importando o módulo de estilos CSS
+
 
 interface Gathering {
     id: string;
@@ -15,7 +17,7 @@ interface Gathering {
     time: string;
 }
 
-const GatheringPlanner: React.FC = () => {
+const Gathering: React.FC = () => {
     const [formData, setFormData] = useState<Omit<Gathering, 'id'>>({
         name: '',
         place: '',
@@ -63,14 +65,21 @@ const GatheringPlanner: React.FC = () => {
 
     return (
         <div className={styles.eventPlannerContainer}>
-            <Card title="Shared Gatherings Planner" className="p-shadow-5">
+            <Card title="Shared Gatherings Planner" className={"p-shadow-5"}>
                 <div className={`p-inputgroup ${styles.inputGroup}`}>
                     <Button
-                        label="Add Gathering"
-                        icon="pi pi-plus"
+                        label="ADD"
+                        icon="pi "
                         onClick={handleAddClick}
                         disabled={isPromptOpen}
                         className="p-button-outlined p-button-success"
+                        style={{
+                            width: '20%',
+                            fontSize: '1.5rem',
+                            backgroundColor: '#0e0969',
+                            justifyContent: 'center', color: 'white',
+
+                        }}
                     />
                     {isPromptOpen && (
                         <div className={styles.inputFields}>
@@ -99,7 +108,7 @@ const GatheringPlanner: React.FC = () => {
                                 className={styles.inputField}
                             />
                             <input
-                                type="text"
+                                type="date"
                                 name="date"
                                 value={formData.date}
                                 onChange={handleChange}
@@ -107,7 +116,7 @@ const GatheringPlanner: React.FC = () => {
                                 className={styles.inputField}
                             />
                             <input
-                                type="text"
+                                type="time"
                                 name="time"
                                 value={formData.time}
                                 onChange={handleChange}
@@ -130,19 +139,20 @@ const GatheringPlanner: React.FC = () => {
                     )}
                 </div>
                 <Divider />
-                <div className={styles.eventList}>
+                <div className={styles.eventList}
+                >
                     {gatherings.length === 0 ? (
                         <p className="p-text-center p-text-muted">No gatherings added</p>
                     ) : (
-                        gatherings.map((gathering) => (
-                            <div key={gathering.id} className={styles.eventItem}>
-                                <div className="p-d-flex p-ai-center">
-                                    <span className={styles.eventName}>{gathering.name}</span>
+                        gatherings.map((item) => (
+                            <div key={item.id} className={styles.eventItem} >
+                                <div className="p-d-flex p-ai-center" >
+                                    <span className={styles.eventName}>{item.name}</span>
                                 </div>
                                 <Button
                                     icon="pi pi-trash"
-                                    className="p-button-rounded p-button-text p-button-plain"
-                                    onClick={() => deleteGathering(gathering.id)}
+                                    className="p-button-rounded"
+                                    onClick={() => deleteGathering(item.id)}
                                 />
                             </div>
                         ))
@@ -153,4 +163,4 @@ const GatheringPlanner: React.FC = () => {
     );
 };
 
-export default GatheringPlanner;
+export default Gathering;

@@ -1,12 +1,15 @@
 /* Main container for the entire event planner */
 .eventPlannerContainer {
   display: flex;
+  text-align: center;
   justify-content: center;
   margin-top: 3rem;
+  margin-bottom: 3rem;
   padding: 1rem;
   background-color: #f4f6f8;
   min-height: 100vh;
 }
+
 
 /* Card styling */
 .p-card {
@@ -17,6 +20,7 @@
   border-radius: 12px;
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
+  jusitfy-content: center;
 }
 
 /* Input and button group styling */
@@ -27,6 +31,7 @@
   gap: 0.5rem;
 
   .p-button {
+    background-color: #64b5f6;
     border-radius: 8px;
     font-weight: 500;
     transition: background-color 0.2s;
@@ -34,7 +39,7 @@
 
     &:hover {
       background-color: #42a5f5;
-      color: #ffffff;
+      color: #000000;
     }
   }
 }
@@ -42,7 +47,7 @@
 /* Input field styling */
 .inputFields {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.5rem;
 }
 
