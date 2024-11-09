@@ -21,7 +21,7 @@ const Activities: React.FC = () => {
     const [cost, setCost] = useState<number | null>(null);
     const [effort, setEffort] = useState('');
     const [activities, setActivities] = useStateTogether<Activity[]>('activities', []);
-
+    
     const effortOptions = [
         { label: 'Low', value: 'Low' },
         { label: 'Moderate', value: 'Moderate' },
@@ -30,10 +30,8 @@ const Activities: React.FC = () => {
 
     const handleSubmit = () => {
         if (activityName.trim() && duration !== null && cost !== null && effort) {
-            // Add new activity
             const newActivity: Activity = { name: activityName.trim(), duration, cost, effort };
             setActivities([...activities, newActivity]);
-            // Clear input fields
             setActivityName('');
             setDuration(null);
             setCost(null);
@@ -44,7 +42,6 @@ const Activities: React.FC = () => {
     };
 
     const handleDelete = (index: number) => {
-        // Remove activity by index
         const updatedActivities = activities.filter((_, i) => i !== index);
         setActivities(updatedActivities);
     };
@@ -114,7 +111,7 @@ const Activities: React.FC = () => {
 
                 {/* Display Activities List */}
                 {activities.length > 0 && (
-                    <div className="p-mt-3 destiny-info p-d-flex p-flex-column p-ai-center">
+                    <div className="destiny-info show p-d-flex p-flex-column p-ai-center">
                         <h3 className="p-mb-2">Activities List:</h3>
                         <ul className="activity-list">
                             {activities.map((activity, index) => (

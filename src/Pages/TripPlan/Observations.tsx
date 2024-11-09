@@ -33,7 +33,9 @@ const Observations: React.FC = () => {
         <Card title="Observations" className="p-shadow-5 " style={{ marginBottom: '1rem' }}>
             <div className="destiny-container p-fluid">
                 <div className="p-field destiny-field">
-                    <label htmlFor="observation" className="p-d-block">What Should Be Considered? (Allergies, Food Restrictions, etc...)</label>
+                    <label htmlFor="observation" className="p-d-block">
+                        What Should Be Considered? (Allergies, Food Restrictions, etc...)
+                    </label>
                     <InputText
                         id="observation"
                         value={observation}
@@ -49,8 +51,10 @@ const Observations: React.FC = () => {
                         className="p-button-rounded p-button-primary"
                     />
                 </div>
+
+                {/* Display Observations List */}
                 {observations.length > 0 && (
-                    <div className="p-mt-3 destiny-info p-d-flex p-flex-column p-ai-center">
+                    <div className="destiny-info show p-d-flex p-flex-column p-ai-center">
                         <ul className="observation-list">
                             {observations.map((obs, index) => (
                                 <li key={index} className="p-d-flex p-jc-between p-ai-center">
