@@ -1,3 +1,9 @@
+/*
+    * Arranjar os inputs
+    * Descobrir como arranjar uma nova pagina
+    * Fazer a nova pagina
+    * Melhorar a lista de gatherings ja feitos
+    * */
 import React from 'react';
 import { useStateTogether } from 'react-together';
 import { useState } from 'react';
@@ -64,24 +70,24 @@ const Gathering: React.FC = () => {
     };
 
     return (
-        <div className={styles.eventPlannerContainer}>
-            <Card title="Shared Gatherings Planner" className={"p-shadow-5"}>
-                <div className={`p-inputgroup ${styles.inputGroup}`}>
-                    <Button
-                        label="ADD"
-                        icon="pi "
-                        onClick={handleAddClick}
-                        disabled={isPromptOpen}
-                        className="p-button-outlined p-button-success"
-                        style={{
-                            width: '20%',
-                            fontSize: '1.5rem',
-                            backgroundColor: '#0e0969',
-                            justifyContent: 'center', color: 'white',
+        <div className={styles['app-container']}>
+            <nav className={styles.navbar}>
+                <h1>Our Gatherings List</h1>
+            </nav>
+            <div className={styles['create-list-section']}>
+                <Button
+                    label="ADD"
+                    icon="pi"
+                    onClick={handleAddClick}
+                    disabled={isPromptOpen}
+                    className={`${styles['roundedButton']} p-button-text p-button-sm`}
+                />
 
-                        }}
-                    />
-                    {isPromptOpen && (
+            </div>
+            <Card className={"p-shadow-5"} style={{ marginBottom: '1rem', width: '60%' }}>
+                <h2 className={styles.cardTitle}>Gatherings</h2>
+                {isPromptOpen && (
+                    <div className={styles['cardTitleContainer']}>
                         <div className={styles.inputFields}>
                             <input
                                 type="text"
@@ -136,24 +142,27 @@ const Gathering: React.FC = () => {
                                 className="p-button-outlined p-button-success"
                             />
                         </div>
-                    )}
-                </div>
-                <Divider />
-                <div className={styles.eventList}
-                >
+                    </div>
+                )}
+                <div className={styles['lists-container']}>
                     {gatherings.length === 0 ? (
-                        <p className="p-text-center p-text-muted">No gatherings added</p>
+                        <p className="p-text-center p-text-muted" style={{}}>No gatherings added</p>
                     ) : (
                         gatherings.map((item) => (
-                            <div key={item.id} className={styles.eventItem} >
-                                <div className="p-d-flex p-ai-center" >
-                                    <span className={styles.eventName}>{item.name}</span>
-                                </div>
-                                <Button
-                                    icon="pi pi-trash"
-                                    className="p-button-rounded"
-                                    onClick={() => deleteGathering(item.id)}
-                                />
+                            <div key={item.id} className={styles['list-card']} >
+                                <Card className="p-shadow-5" style={{ marginBottom: '1rem' }}>
+                                    <div className={styles['cardTitleContainer']}>
+                                        <h2 className={styles['cardTitle']}>
+                                            {item.name}
+                                        </h2>
+                                        <Button
+                                            label="Delete"
+                                            icon="pi pi-trash"
+                                            className={styles['deleteButton']}
+                                            onClick={() => deleteGathering(item.id)}
+                                        />
+                                    </div>
+                                </Card>
                             </div>
                         ))
                     )}
