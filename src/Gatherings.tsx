@@ -1,20 +1,12 @@
 import React from 'react';
 import { useStateTogether } from 'react-together';
 import { useState } from 'react';
-import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { Divider } from 'primereact/divider';
-import { Checkbox } from 'primereact/checkbox';
-import styles from './styles/ShoppingList/ShoppingList.module.scss'; // Import the CSS module
+import styles from './styles/Gatherings/Gatherings.module.scss'; // Importando o módulo de estilos CSS
 
-interface Item {
-    id: number;
-    name: string;
-    purchased: boolean;
-}
-
-interface FormData {
+interface Gathering {
     id: string;
     name: string;
     place: string;
@@ -23,147 +15,134 @@ interface FormData {
     time: string;
 }
 
-const ShoppingList: React.FC = () => {
-    const [items, setItems] = useStateTogether<Item[]>('shared_items', []);
-    const [inputValue, setInputValue] = useStateTogether<string>('input_value', '');
-    const [formData, setFormData] = useState<Omit<FormData, 'id'>>({
+const GatheringPlanner: React.FC = () => {
+    const [formData, setFormData] = useState<Omit<Gathering, 'id'>>({
         name: '',
         place: '',
         address: '',
         date: '',
         time: '',
     });
-    const [formDataList, setFormDataList] = useStateTogether<FormData[]>('form_data_list', []);
-    const [isPromptOpen, setIsDisabled] = useState(false);
+    const [gatherings, setGatherings] = useStateTogether<Gathering[]>('gathering_list', []);
+    const [isPromptOpen, setIsPromptOpen] = useState(false);
 
-    const deleteItem = (id: string) => {
-        setFormDataList((prevList) => prevList.filter((item) => item.id !== id));
+    const deleteGathering = (id: string) => {
+        setGatherings((prevList) => prevList.filter((gathering) => gathering.id !== id));
     };
 
     const handleAddClick = () => {
-        console.log('formData', formData);
-        setFormData({
-            name: '',
-            place: '',
-            address: '',
-            date: '',
-            time: '',
-        });
-        setIsDisabled(!isPromptOpen);
-    }
+        setIsPromptOpen(true);
+    };
 
     const handleOkClick = () => {
-        validate();
-        console.log('formData', formData);
-    }
+        if (validateFormData()) {
+            const newGathering = { ...formData, id: `${Date.now()}-${Math.floor(Math.random() * 1000)}` };
+            setGatherings((prevList) => [...prevList, newGathering]);
+            resetFormData();
+            setIsPromptOpen(false);
+        }
+    };
 
     const handleCancelClick = () => {
-        console.log('formData', formData);
-        setIsDisabled(!isPromptOpen);
-    }
+        resetFormData();
+        setIsPromptOpen(false);
+    };
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
-    }
+    };
 
-    const validate = () => {
-        if (!formData.name.trim() || !formData.place.trim() || !formData.address.trim() || !formData.date.trim() || !formData.time.trim()) {
-            setIsDisabled(isPromptOpen);
-        } else {
-            const newFormData = {
-                ...formData,
-                id: `${Date.now()}-${Math.floor(Math.random() * 1000)}`,
-            };
-            setFormDataList((prevlist) => [...prevlist, newFormData]);
-            setIsDisabled(!isPromptOpen);
-        }
-    }
+    const validateFormData = () => {
+        return Object.values(formData).every((value) => value.trim() !== '');
+    };
+
+    const resetFormData = () => {
+        setFormData({ name: '', place: '', address: '', date: '', time: '' });
+    };
 
     return (
-        <div className={styles.shoppingListContainer}>
-            <Card title="Shared Gatherings List" className="p-shadow-5">
+        <div className={styles.eventPlannerContainer}>
+            <Card title="Shared Gatherings Planner" className="p-shadow-5">
                 <div className={`p-inputgroup ${styles.inputGroup}`}>
                     <Button
-                        label="Add"
+                        label="Add Gathering"
                         icon="pi pi-plus"
                         onClick={handleAddClick}
                         disabled={isPromptOpen}
                         className="p-button-outlined p-button-success"
                     />
                     {isPromptOpen && (
-                        <>
+                        <div className={styles.inputFields}>
                             <input
                                 type="text"
                                 value={formData.name}
-                                name='name'
+                                name="name"
                                 onChange={handleChange}
                                 placeholder="Enter your name"
+                                className={styles.inputField}
                             />
                             <input
                                 type="text"
-                                name='place'
+                                name="place"
                                 value={formData.place}
                                 onChange={handleChange}
                                 placeholder="Enter the place's name"
+                                className={styles.inputField}
                             />
                             <input
                                 type="text"
-                                name='address'
+                                name="address"
                                 value={formData.address}
                                 onChange={handleChange}
-                                placeholder="Enter the address of the place"
+                                placeholder="Enter the address"
+                                className={styles.inputField}
                             />
                             <input
                                 type="text"
-                                name='date'
+                                name="date"
                                 value={formData.date}
                                 onChange={handleChange}
-                                placeholder="Enter the date of the gathering"
+                                placeholder="Enter the date"
+                                className={styles.inputField}
                             />
                             <input
                                 type="text"
-                                name='time'
+                                name="time"
                                 value={formData.time}
                                 onChange={handleChange}
-                                placeholder="Enter the time of the gathering"
+                                placeholder="Enter the time"
+                                className={styles.inputField}
                             />
                             <Button
                                 label="Cancel"
-                                icon="pi pi-plus"
+                                icon="pi pi-times"
                                 onClick={handleCancelClick}
-                                disabled={!isPromptOpen}
-                                className="p-button-outlined p-button-success"
+                                className="p-button-outlined p-button-danger"
                             />
                             <Button
                                 label="Ok"
-                                icon="pi pi-plus"
+                                icon="pi pi-check"
                                 onClick={handleOkClick}
-                                disabled={!isPromptOpen}
                                 className="p-button-outlined p-button-success"
                             />
-                        </>
+                        </div>
                     )}
                 </div>
                 <Divider />
-                <div className={styles.shoppingListItems}>
-                    {formDataList.length === 0 ? (
-                        <p className="p-text-center p-text-muted">No items added</p>
+                <div className={styles.eventList}>
+                    {gatherings.length === 0 ? (
+                        <p className="p-text-center p-text-muted">No gatherings added</p>
                     ) : (
-                        formDataList.map((item) => (
-                            <div
-                                key={item.id}
-                                className={styles.shoppingListItem}
-                            >
+                        gatherings.map((gathering) => (
+                            <div key={gathering.id} className={styles.eventItem}>
                                 <div className="p-d-flex p-ai-center">
-                                    <span>
-                                        {item.name}
-                                    </span>
+                                    <span className={styles.eventName}>{gathering.name}</span>
                                 </div>
                                 <Button
                                     icon="pi pi-trash"
                                     className="p-button-rounded p-button-text p-button-plain"
-                                    onClick={() => deleteItem(item.id)}
+                                    onClick={() => deleteGathering(gathering.id)}
                                 />
                             </div>
                         ))
@@ -174,5 +153,4 @@ const ShoppingList: React.FC = () => {
     );
 };
 
-export default ShoppingList;
-
+export default GatheringPlanner;
