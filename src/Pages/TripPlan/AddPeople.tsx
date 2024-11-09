@@ -64,7 +64,7 @@ const ShoppingList: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
                 <InputText
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Add an item"
+                    placeholder="Add a person"
                 />
                 <InputText
                     type="number"
