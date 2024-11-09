@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useStateTogether } from 'react-together';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
@@ -13,15 +13,10 @@ interface Item {
   quantity: number;
 }
 
-interface ShoppingListProps {
-  id: number;
-  name: string;
-  onDelete: () => void;
-}
-
-const ShoppingList: React.FC<ShoppingListProps> = ({ id, name, onDelete }) => {
+// Define props inline instead of using ShoppingListProps interface
+const ShoppingList: React.FC<{ id: number; name: string; onDelete: () => void }> = ({ id, name, onDelete }) => {
   const [items, setItems] = useStateTogether<Item[]>(`items_${id}`, []);
-  const [inputValue, setInputValue] = useStateTogether<string>('input_value', '');
+  const [inputValue, setInputValue] = useStateTogether<string>(`input_value_${id}`, '');
 
   const addItem = () => {
     if (inputValue.trim() !== '') {
@@ -68,7 +63,6 @@ const ShoppingList: React.FC<ShoppingListProps> = ({ id, name, onDelete }) => {
 
   return (
     <Card className="p-shadow-5" style={{ marginBottom: '1rem' }}>
-      {/* Title and Delete Button Container */}
       <div className={styles['cardTitleContainer']}>
         <h2 className={styles['cardTitle']}>{name}</h2>
         <Button
@@ -79,7 +73,6 @@ const ShoppingList: React.FC<ShoppingListProps> = ({ id, name, onDelete }) => {
         />
       </div>
 
-      {/* Add Item Input Group */}
       <div className={`p-inputgroup ${styles['inputGroup']}`}>
         <InputText
           value={inputValue}
@@ -95,7 +88,6 @@ const ShoppingList: React.FC<ShoppingListProps> = ({ id, name, onDelete }) => {
       </div>
       <Divider />
 
-      {/* Shopping List Items */}
       <div className={styles['shoppingListItems']}>
         {items.length === 0 ? (
           <p className="p-text-center p-text-muted">No items added</p>
@@ -103,7 +95,6 @@ const ShoppingList: React.FC<ShoppingListProps> = ({ id, name, onDelete }) => {
           items.map((item) => (
             <div key={item.id} className={styles['shoppingListItem']}>
               <div className={styles['itemDetails']}>
-                {/* Custom Checkbox */}
                 <label className={styles['customCheckbox']}>
                   <input
                     type="checkbox"
