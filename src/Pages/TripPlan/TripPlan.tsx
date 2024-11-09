@@ -4,6 +4,7 @@ import Destiny from './Destiny';
 import Transports from './Transports';
 import Accomodation from './Accomodation';
 import AddPeople from './AddPeople';
+import Observations from './Observations';
 
 const App: React.FC = () => {
   // A simple onDelete function that will log a message to the console
@@ -29,6 +30,8 @@ const App: React.FC = () => {
         <Transports />
         <div style={{ marginBottom: '10px' }}></div>
         <Accomodation />
+        <div style={{ marginBottom: '10px' }}></div>
+        <Observations />
       </div>
 
       {/* Right Section (30%) for AddPeople */}
