@@ -7,46 +7,67 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 
 const Dates = () => {
-    // Armazenando as datas como strings para evitar possíveis problemas com objetos Date
+    // Store dates as strings to avoid issues with Date objects
     const [startDateString, setStartDateString] = useStateTogether<string | null>('start_date', null);
     const [endDateString, setEndDateString] = useStateTogether<string | null>('end_date', null);
 
-    // Converte strings para objetos Date ao usar no componente Calendar
+    // Convert string dates to Date objects for the Calendar component
     const startDate = startDateString ? new Date(startDateString) : null;
     const endDate = endDateString ? new Date(endDateString) : null;
 
-    // Funções de atualização convertendo Date para string antes de armazenar
+    // Function to handle start date change
     const handleStartDateChange = (e: any) => {
-        setStartDateString(e.value ? e.value.toISOString() : null);
+        const newStartDate = e.value ? new Date(e.value) : null;
+
+        // Validate: Start date cannot be after end date
+        if (newStartDate && endDate && newStartDate > endDate) {
+            alert('Start date cannot be after end date');
+            return; // Stop further execution if validation fails
+        }
+
+        // If validation passes, update state
+        setStartDateString(newStartDate ? newStartDate.toISOString() : null);
     };
 
+    // Function to handle end date change
     const handleEndDateChange = (e: any) => {
-        setEndDateString(e.value ? e.value.toISOString() : null);
+        const newEndDate = e.value ? new Date(e.value) : null;
+
+        // Validate: End date cannot be before start date
+        if (newEndDate && startDate && newEndDate < startDate) {
+            alert('End date cannot be before start date');
+            return; // Stop further execution if validation fails
+        }
+
+        // If validation passes, update state
+        setEndDateString(newEndDate ? newEndDate.toISOString() : null);
     };
 
     return (
         <Card title="Trip Plan" style={{ width: '25em', margin: 'auto', marginTop: '2em' }}>
-            <div className="p-field" style={{ marginBottom: '1em' }}>
-                <label htmlFor="startDate">Start Date:</label>
-                <Calendar 
-                    id="startDate" 
-                    value={startDate} 
-                    onChange={handleStartDateChange} 
-                    dateFormat="yy-mm-dd" 
-                    placeholder="YYYY-MM-DD" 
-                    showIcon
-                />
-            </div>
-            <div className="p-field">
-                <label htmlFor="endDate">End Date:</label>
-                <Calendar 
-                    id="endDate" 
-                    value={endDate} 
-                    onChange={handleEndDateChange} 
-                    dateFormat="yy-mm-dd" 
-                    placeholder="YYYY-MM-DD" 
-                    showIcon
-                />
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div className="p-field" style={{ marginRight: '1em' }}>
+                    <label htmlFor="startDate">Start Date:</label>
+                    <Calendar
+                        id="startDate"
+                        onChange={handleStartDateChange}
+                        value={startDate}
+                        dateFormat="yy-mm-dd"
+                        placeholder="YYYY-MM-DD"
+                        showIcon
+                    />
+                </div>
+                <div className="p-field">
+                    <label htmlFor="endDate">End Date:</label>
+                    <Calendar
+                        id="endDate"
+                        onChange={handleEndDateChange}
+                        value={endDate}
+                        dateFormat="yy-mm-dd"
+                        placeholder="YYYY-MM-DD"
+                        showIcon
+                    />
+                </div>
             </div>
         </Card>
     );
