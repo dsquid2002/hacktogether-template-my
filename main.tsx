@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { ReactTogether } from 'react-together'
 
-import App from '@/App'
+import App from '@Pages/ShoppingList/ShoppingListLandingPage'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
