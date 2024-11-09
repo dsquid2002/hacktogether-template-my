@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useStateTogether } from 'react-together';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import ShoppingList from './ShoppingList';
@@ -10,8 +11,8 @@ interface List {
 }
 
 const ShoppingListLandingPage: React.FC = () => {
-  const [lists, setLists] = useState<List[]>([]);
-  const [newListName, setNewListName] = useState('');
+  const [lists, setLists] = useStateTogether<List[]>('sharedLists', []); // Using useStateTogether for shared state
+  const [newListName, setNewListName] = React.useState('');
 
   const addList = () => {
     if (newListName.trim() !== '') {
@@ -41,7 +42,12 @@ const ShoppingListLandingPage: React.FC = () => {
           onChange={(e) => setNewListName(e.target.value)}
           placeholder="Enter list name"
         />
-        <Button label="Add List" icon="pi pi-plus" className= {`${styles['roundedButton']} p-button-text p-button-sm`} onClick={addList} />
+        <Button
+          label="Add List"
+          icon="pi pi-plus"
+          className={`${styles['roundedButton']} p-button-text p-button-sm`}
+          onClick={addList}
+        />
       </div>
 
       <div className={styles['lists-container']}>
