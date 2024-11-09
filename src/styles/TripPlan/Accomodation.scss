@@ -1,23 +1,23 @@
-/* Custom Styles for Transports Component */
+/* Custom Styles for Accomodation Component */
 
 /* Card container styling */
-.transports-card {
+.accomodation-card {
     width: 40em;
-    margin: 2em auto; /* Add spacing around the card */
+    margin: 2em auto;
     background-color: #f7f7f7;
-    border-radius: 25px; /* Softer roundness */
+    border-radius: 25px;
     padding: 2em;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.transports-card:hover {
+.accomodation-card:hover {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     transform: translateY(-4px);
 }
 
 /* Main container for centering */
-.transports-container {
+.accomodation-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,7 +25,7 @@
 }
 
 /* Header styling */
-.transports-header {
+.accomodation-header {
     font-size: 2rem;
     text-align: center;
     margin-bottom: 1.5em;
@@ -36,17 +36,17 @@
 }
 
 /* Container for the radio buttons */
-.transports-field-container {
+.accomodation-field-container {
     display: flex;
     justify-content: space-evenly;
     gap: 1.5em;
     margin-bottom: 1.5em;
-    flex-wrap: wrap; /* Ensure it wraps for smaller screens */
+    flex-wrap: wrap;
     max-width: 100%;
 }
 
 /* Styling for each radio button field */
-.transports-field {
+.accomodation-field {
     display: flex;
     align-items: center;
     font-size: 1.1rem;
@@ -56,19 +56,19 @@
     transition: background-color 0.3s ease;
 }
 
-/* Hover effect for each transport option */
-.transports-field:hover {
+/* Hover effect for each accommodation option */
+.accomodation-field:hover {
     background-color: #e0e0e0;
 }
 
 /* Styling for the labels next to radio buttons */
-.transports-field label {
+.accomodation-field label {
     margin-left: 0.5em;
     color: #333;
 }
 
-/* Info section for the selected transport */
-.transports-info {
+/* Info section for the selected accommodation */
+.accomodation-info {
     margin-top: 2em;
     text-align: center;
     font-size: 1.2rem;
@@ -100,4 +100,3 @@
 .custom-reset-button:focus {
     box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 }
-

@@ -7,12 +7,12 @@ import 'src/styles/TripPlan/Transports.scss'; // Import custom SCSS
 import { useStateTogether } from 'react-together';
 
 const Transports: React.FC = () => {
-    const [selectedTransport, setSelectedTransport] = useStateTogether<string>('selectedTransport','');
+    const [selectedTransport, setSelectedTransport] = useStateTogether<string>('selectedTransport', '');
 
     return (
         <div className="transports-card"> {/* Applying the custom card class */}
             <div className="transports-container">
-                <h2 className="transports-header">Select Transport</h2> {/* Header */}
+                <h2 className="transports-header">Select Your Transport</h2> {/* Header */}
                 
                 {/* Horizontal layout for radio buttons */}
                 <div className="transports-field-container">
@@ -72,6 +72,12 @@ const Transports: React.FC = () => {
                     </div>
                 </div>
 
+                {/* Info Section */}
+                {selectedTransport && (
+                    <div className="transports-info">
+                        <p>You have selected: <strong>{selectedTransport}</strong></p>
+                    </div>
+                )}
             </div>
         </div>
     );
