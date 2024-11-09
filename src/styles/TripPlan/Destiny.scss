@@ -1,61 +1,59 @@
-/* Custom Styles for Destiny Component */
-
+/* Adicionando bordas animadas ao card e ao input */
 .destiny-card {
     width: 40em;
     margin: auto;
     background-color: #f7f7f7;
     border-radius: 50px;    
     padding: 0.5em;
+    position: relative;
+    border: 2px solid transparent;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: border 0.4s ease, box-shadow 0.4s ease;
 }
 
-.destiny-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.destiny-card:hover {
+    border: 2px solid #007ad9; /* Cor da borda ao passar o mouse */
+    box-shadow: 0 2px 15px rgba(0, 122, 217, 0.3);
 }
 
-.destiny-field {
-    margin-bottom: 1em;
-}
-
-.destiny-input {
+.destiny-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    margin-top: 0.5em;
+    height: 100%;
+    border: 2px solid #007ad9;
+    border-radius: 50px;
+    transform: scale(1);
+    transition: transform 0.5s ease;
+    z-index: -1;
 }
 
-.destiny-button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 1em;
+.destiny-card:hover::before {
+    transform: scale(1.1); /* Aumenta a borda ao passar o mouse */
 }
 
-.custom-reset-button {
-    background-color: #007bff;
-    border-color: #007bff;
-    color: white;
-    width: 100%;
+/* Adicionando borda animada ao input */
+.destiny-field .p-inputtext {
+    position: relative;
+    padding: 0.8rem;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.custom-reset-button:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
+.destiny-field .p-inputtext:focus {
+    border-color: #007ad9; /* Cor da borda ao focar no input */
+    box-shadow: 0 0 5px rgba(0, 122, 217, 0.3);
 }
 
-.custom-reset-button:focus {
-    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+/* Focando no botão para dar o destaque */
+.destiny-button-container .p-button-rounded {
+    transition: transform 0.2s ease;
 }
 
-.destiny-info {
-    margin-top: 1.5em;
-    text-align: center;
-}
-
-.destiny-info h3 {
-    font-size: 1.2em;
-    margin-bottom: 0.5em;
-}
-
-.destiny-info p {
-    font-size: 1.1em;
-    color: #333;
+.destiny-button-container .p-button-rounded:hover {
+    transform: scale(1.05);
 }

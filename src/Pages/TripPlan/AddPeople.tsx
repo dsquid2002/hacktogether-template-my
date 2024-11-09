@@ -53,7 +53,7 @@ const ShoppingList: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
     };
 
     return (
-        <Card className="p-shadow-5" style={{ marginBottom: '1rem' }}>
+        <Card className={`${styles['p-shadow-5']} ${styles['card']}`} style={{ marginBottom: '1rem' }}>
             {/* Title and Delete Button Container */}
             <div className={styles['cardTitleContainer']}>
                 <h2 className={styles['cardTitle']}>{name}</h2>
@@ -77,7 +77,7 @@ const ShoppingList: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
                     label="Add"
                     icon="pi pi-plus"
                     onClick={addItem}
-                    className={styles['roundedButton']}
+                    className={`${styles['roundedButton']} p-button-rounded p-button-primary`}
                 />
             </div>
             <Divider />
@@ -88,22 +88,18 @@ const ShoppingList: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
                     <p className="p-text-center p-text-muted">No items added</p>
                 ) : (
                     items.map((item) => (
-                        <div key={item.id} className={styles['shoppingListItem']}>
+                        <div key={item.id} className={`${styles['shoppingListItem']} ${item.purchased ? styles['purchased'] : ''}`}>
                             <div className={styles['itemDetails']}>
                                 <span
-                                    className={`${styles['itemName']} ${item.purchased ? styles['purchased'] : ''}`}
+                                    className={styles['itemName']}
                                     onClick={() => toggleItemPurchased(item.id)}
-                                    style={{ fontWeight: 'bold' }} 
                                 >
                                     {item.name}
                                 </span>
 
                                 {/* Budget Section */}
                                 <div className={styles['quantityControls']}>
-                                    {/* Budget Title */}
                                     <span className={styles['quantityTitle']}>Budget: </span>
-                                    
-                                    {/* Display the budget for each item */}
                                     <span className={styles['quantityValue']}>{item.budget}€</span>
                                 </div>
                             </div>

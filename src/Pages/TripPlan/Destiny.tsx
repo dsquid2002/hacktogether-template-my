@@ -8,10 +8,9 @@ import { Card } from 'primereact/card';
 import 'src/styles/TripPlan/Destiny.scss'; // Import custom CSS
 import { useStateTogether } from 'react-together';
 
-
 const Destiny: React.FC = () => {
     const [destination, setDestination] = useState('');
-    const [submittedDestination, setSubmittedDestination] = useStateTogether<string>('destination','');
+    const [submittedDestination, setSubmittedDestination] = useStateTogether<string>('destination', '');
 
     const handleSubmit = () => {
         setSubmittedDestination(destination);
@@ -22,11 +21,11 @@ const Destiny: React.FC = () => {
             <div className="destiny-container p-fluid">
                 <div className="p-field destiny-field">
                     <label htmlFor="destination" className="p-d-block">Where to? &#9992; </label>
-                    <InputText 
-                        id="destination" 
-                        value={destination} 
-                        onChange={(e) => setDestination(e.target.value)} 
-                        className="p-inputtext-lg p-d-block"                        
+                    <InputText
+                        id="destination"
+                        value={destination}
+                        onChange={(e) => setDestination(e.target.value)}
+                        className="p-inputtext-lg p-d-block"
                         placeholder="Enter your destination"
                     />
                 </div>
