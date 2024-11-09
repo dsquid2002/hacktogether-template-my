@@ -5,6 +5,7 @@ import Transports from './Transports';
 import Accomodation from './Accomodation';
 import AddPeople from './AddPeople';
 import Observations from './Observations';
+import Activities from './Activities';
 
 const App: React.FC = () => {
   // A simple onDelete function that will log a message to the console
