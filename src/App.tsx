@@ -1,10 +1,10 @@
 import React from 'react';
-import ShoppingList from './ShoppingList';
+import Gatherings from './Gatherings';
 
 const App: React.FC = () => {
   return (
     <div>
-      <ShoppingList />
+      <Gatherings />
     </div>
   );
 };
