@@ -21,7 +21,7 @@ interface ShoppingListProps {
 
 const ShoppingList: React.FC<ShoppingListProps> = ({ id, name, onDelete }) => {
   const [items, setItems] = useStateTogether<Item[]>(`items_${id}`, []);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useStateTogether<string>('input_value', '');
 
   const addItem = () => {
     if (inputValue.trim() !== '') {
