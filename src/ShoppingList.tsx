@@ -5,6 +5,7 @@ import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { Divider } from 'primereact/divider';
 import { Checkbox } from 'primereact/checkbox';
+import styles from './styles/ShoppingList/ShoppingList.module.scss'; // Import the CSS module
 
 interface Item {
   id: number;
@@ -41,14 +42,13 @@ const ShoppingList: React.FC = () => {
   };
 
   return (
-    <div className="p-d-flex p-jc-center p-mt-5">
-      <Card title="Shared Shopping List" className="p-shadow-5" style={{ width: '100%', maxWidth: '500px' }}>
-        <div className="p-inputgroup" style={{ marginBottom: '1rem' }}>
+    <div className={styles.shoppingListContainer}>
+      <Card title="Shared Shopping List" className="p-shadow-5">
+        <div className={`p-inputgroup ${styles.inputGroup}`}>
           <InputText
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="Enter an item"
-            style={{ flex: 1, padding: '0.75rem' }}
           />
           <Button
             label="Add"
@@ -58,18 +58,14 @@ const ShoppingList: React.FC = () => {
           />
         </div>
         <Divider />
-        <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
+        <div className={styles.shoppingListItems}>
           {items.length === 0 ? (
-            <p className="p-text-center p-text-muted" style={{ margin: '1rem 0' }}>No items added</p>
+            <p className="p-text-center p-text-muted">No items added</p>
           ) : (
             items.map((item) => (
               <div
                 key={item.id}
-                className="p-d-flex p-ai-center p-jc-between"
-                style={{
-                  padding: '0.5rem 0',
-                  borderBottom: '1px solid #ddd',
-                }}
+                className={styles.shoppingListItem}
               >
                 <div className="p-d-flex p-ai-center">
                   <Checkbox
@@ -78,20 +74,16 @@ const ShoppingList: React.FC = () => {
                     style={{ marginRight: '0.5rem' }}
                   />
                   <span
-                    style={{
-                      textDecoration: item.purchased ? 'line-through' : 'none',
-                      color: item.purchased ? '#999' : '#333',
-                      fontSize: '1rem',
-                    }}
+                    className={`${styles.itemName} ${item.purchased ? styles.purchased : ''}`}
+                    onClick={() => toggleItemPurchased(item.id)}
                   >
                     {item.name}
                   </span>
                 </div>
                 <Button
-                  icon="pi pi-times"
+                  icon="pi pi-trash"
                   className="p-button-rounded p-button-text p-button-plain"
                   onClick={() => deleteItem(item.id)}
-                  style={{ color: '#999' }}
                 />
               </div>
             ))
