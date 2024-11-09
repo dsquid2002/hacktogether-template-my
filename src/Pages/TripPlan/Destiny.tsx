@@ -5,6 +5,7 @@ import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import { Card } from 'primereact/card';
+import 'src/styles/TripPlan/Destiny.scss'; // Import custom CSS
 
 const Destiny: React.FC = () => {
     const [destination, setDestination] = useState('');
@@ -15,24 +16,25 @@ const Destiny: React.FC = () => {
     };
 
     return (
-        <Card title="Destiny" style={{ width: '25em', margin: 'auto', marginTop: '2em' }}>
-            <div className="container">
-                <h2>Enter Your Trip Destination</h2>
-                <div className="p-field">
-                    <label htmlFor="destination">Destination</label>
+        <Card title="Destination" className="p-shadow-5 destiny-card">
+            <div className="destiny-container p-fluid">
+                <div className="p-field destiny-field">
+                    <label htmlFor="destination" className="p-d-block">Where to? &#9992; </label>
                     <InputText 
                         id="destination" 
                         value={destination} 
                         onChange={(e) => setDestination(e.target.value)} 
+                        className="p-inputtext-lg p-d-block"                        
+                        placeholder="Enter your destination"
                     />
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1em' }}>
-                    <Button label="Submit" onClick={handleSubmit} />
+                <div className="destiny-button-container p-d-flex p-jc-center p-mt-3">
+                    <Button label="Submit" onClick={handleSubmit} className="p-button-rounded p-button-primary" />
                 </div>
                 {submittedDestination && (
-                    <div className="p-mt-3">
-                        <h3>Your Destination:</h3>
-                        <p>{submittedDestination}</p>
+                    <div className="p-mt-3 destiny-info p-d-flex p-flex-column p-ai-center">
+                        <h3 className="p-mb-2">Your Destination:</h3>
+                        <p className="p-text-bold">{submittedDestination}</p>
                     </div>
                 )}
             </div>

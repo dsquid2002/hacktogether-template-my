@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useStateTogether } from 'react-together';
 import { Calendar } from 'primereact/calendar';
 import { Card } from 'primereact/card';
+import { Button } from 'primereact/button';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
+import 'src/styles/TripPlan/Dates.scss'; // Import custom CSS
 
 const Dates = () => {
     // Store dates as strings to avoid issues with Date objects
@@ -49,10 +51,18 @@ const Dates = () => {
         setEndDateString(newEndDate ? newEndDate.toISOString() : null);
     };
 
+    // Function to reset dates
+    const resetDates = () => {
+        setStartDateString(null);
+        setEndDateString(null);
+        setStartDateError(null);
+        setEndDateError(null);
+    };
+
     return (
-        <Card title="Trip Plan" style={{ width: '25em', margin: 'auto', marginTop: '2em' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <div className="p-field" style={{ marginRight: '1em' }}>
+        <Card title="Trip Plan" className="p-shadow-5 p-mt-4 dates-card">
+            <div className="dates-container">
+                <div className="p-field dates-field">
                     <label htmlFor="startDate">Start Date:</label>
                     <Calendar
                         id="startDate"
@@ -61,10 +71,11 @@ const Dates = () => {
                         dateFormat="yy-mm-dd"
                         placeholder="YYYY-MM-DD"
                         showIcon
+                        className="dates-calendar"
                     />
-                    {startDateError && <small style={{ color: 'red' }}>{startDateError}</small>}
+                    {startDateError && <small className="error-text">{startDateError}</small>}
                 </div>
-                <div className="p-field">
+                <div className="p-field dates-field">
                     <label htmlFor="endDate">End Date:</label>
                     <Calendar
                         id="endDate"
@@ -73,10 +84,12 @@ const Dates = () => {
                         dateFormat="yy-mm-dd"
                         placeholder="YYYY-MM-DD"
                         showIcon
+                        className="dates-calendar"
                     />
-                    {endDateError && <small style={{ color: 'red' }}>{endDateError}</small>}
+                    {endDateError && <small className="error-text">{endDateError}</small>}
                 </div>
             </div>
+            <Button label="Reset" onClick={resetDates} className="p-button-outlined p-button-danger" />
         </Card>
     );
 };
