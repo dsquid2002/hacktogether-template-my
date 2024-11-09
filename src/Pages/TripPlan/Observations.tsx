@@ -30,7 +30,7 @@ const Observations: React.FC = () => {
     };
 
     return (
-        <Card title="Observations" className="p-shadow-5 destiny-card">
+        <Card title="Observations" className="p-shadow-5 " style={{ marginBottom: '1rem' }}>
             <div className="destiny-container p-fluid">
                 <div className="p-field destiny-field">
                     <label htmlFor="observation" className="p-d-block">What Should Be Considered? (Allergies, Food Restrictions, etc...)</label>
