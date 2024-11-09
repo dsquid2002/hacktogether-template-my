@@ -15,7 +15,7 @@ interface Item {
 }
 
 interface ShoppingListProps {
-  id: number;
+  id: number; 
   name: string;
 }
 

@@ -6,6 +6,7 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 
 const Dates = () => {
+    // Use useState for startDate and endDate
     const [startDate, setStartDate] = useState<Date | null>(null);
     const [endDate, setEndDate] = useState<Date | null>(null);
 
@@ -16,9 +17,10 @@ const Dates = () => {
                 <Calendar 
                     id="startDate" 
                     value={startDate} 
-                    onChange={(e) => setStartDate(e.value)} 
+                    onChange={(e: any) => setStartDate(e.value)} 
                     dateFormat="yy-mm-dd" 
                     placeholder="YYYY-MM-DD" 
+                    showIcon
                 />
             </div>
             <div className="p-field">
@@ -26,9 +28,10 @@ const Dates = () => {
                 <Calendar 
                     id="endDate" 
                     value={endDate} 
-                    onChange={(e) => setEndDate(e.value)} 
+                    onChange={(e: any) => setEndDate(e.value)} 
                     dateFormat="yy-mm-dd" 
                     placeholder="YYYY-MM-DD" 
+                    showIcon
                 />
             </div>
         </Card>
