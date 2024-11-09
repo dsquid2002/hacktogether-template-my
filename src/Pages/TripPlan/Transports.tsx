@@ -4,9 +4,10 @@ import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'src/styles/TripPlan/Transports.scss'; // Import custom SCSS
+import { useStateTogether } from 'react-together';
 
 const Transports: React.FC = () => {
-    const [selectedTransport, setSelectedTransport] = useState<string>('');
+    const [selectedTransport, setSelectedTransport] = useStateTogether<string>('selectedTransport','');
 
     return (
         <div className="transports-card"> {/* Applying the custom card class */}

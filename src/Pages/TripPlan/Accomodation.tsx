@@ -4,9 +4,11 @@ import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'src/styles/TripPlan/Transports.scss'; // Import custom SCSS
+import { useStateTogether } from 'react-together';
+
 
 const Accomodation: React.FC = () => {
-    const [selectedTransport, setSelectedTransport  ] = useState<string>('');
+    const [selectedAccomodation, setselectedAccomodation  ] = useStateTogether<string>('selectedAccomodation','');
 
     return (
         <div className="transports-card"> {/* Applying the custom card class */}
@@ -20,8 +22,8 @@ const Accomodation: React.FC = () => {
                             inputId="hotel" 
                             name="accommodation" 
                             value="Hotel" 
-                            onChange={(e) => setSelectedTransport(e.value)} 
-                            checked={selectedTransport === 'Hotel'} 
+                            onChange={(e) => setselectedAccomodation(e.value)} 
+                            checked={selectedAccomodation === 'Hotel'} 
                         />
                         <label htmlFor="hotel">Hotel</label>
                     </div>
@@ -31,8 +33,8 @@ const Accomodation: React.FC = () => {
                             inputId="hostel" 
                             name="accommodation" 
                             value="Hostel" 
-                            onChange={(e) => setSelectedTransport(e.value)} 
-                            checked={selectedTransport === 'Hostel'} 
+                            onChange={(e) => setselectedAccomodation(e.value)} 
+                            checked={selectedAccomodation === 'Hostel'} 
                         />
                         <label htmlFor="hostel">Hostel</label>
                     </div>
@@ -42,8 +44,8 @@ const Accomodation: React.FC = () => {
                             inputId="rented" 
                             name="accommodation" 
                             value="Rented" 
-                            onChange={(e) => setSelectedTransport(e.value)} 
-                            checked={selectedTransport === 'Rented'} 
+                            onChange={(e) => setselectedAccomodation(e.value)} 
+                            checked={selectedAccomodation === 'Rented'} 
                         />
                         <label htmlFor="rented">Rented</label>
                     </div>
@@ -53,8 +55,8 @@ const Accomodation: React.FC = () => {
                             inputId="camping" 
                             name="accommodation" 
                             value="Camping" 
-                            onChange={(e) => setSelectedTransport(e.value)} 
-                            checked={selectedTransport === 'Camping'} 
+                            onChange={(e) => setselectedAccomodation(e.value)} 
+                            checked={selectedAccomodation === 'Camping'} 
                         />
                         <label htmlFor="camping">Camping</label>
                     </div>
@@ -64,8 +66,8 @@ const Accomodation: React.FC = () => {
                             inputId="family" 
                             name="accommodation" 
                             value="Family" 
-                            onChange={(e) => setSelectedTransport(e.value)} 
-                            checked={selectedTransport === 'Family'} 
+                            onChange={(e) => setselectedAccomodation(e.value)} 
+                            checked={selectedAccomodation === 'Family'} 
                         />
                         <label htmlFor="family">Family</label>
                     </div>

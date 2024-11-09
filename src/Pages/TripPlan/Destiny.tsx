@@ -6,10 +6,12 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import { Card } from 'primereact/card';
 import 'src/styles/TripPlan/Destiny.scss'; // Import custom CSS
+import { useStateTogether } from 'react-together';
+
 
 const Destiny: React.FC = () => {
     const [destination, setDestination] = useState('');
-    const [submittedDestination, setSubmittedDestination] = useState('');
+    const [submittedDestination, setSubmittedDestination] = useStateTogether<string>('destination','');
 
     const handleSubmit = () => {
         setSubmittedDestination(destination);
