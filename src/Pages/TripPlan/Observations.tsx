@@ -6,10 +6,11 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import { Card } from 'primereact/card';
 import 'src/styles/TripPlan/Observations.scss'; // Import custom CSS
+import { useStateTogether } from 'react-together';
 
 const Observations: React.FC = () => {
     const [observation, setObservation] = useState('');
-    const [observations, setObservations] = useState<string[]>([]);
+    const [observations, setObservations] = useStateTogether<string[]>('observations', []);
 
     const handleSubmit = () => {
         if (observation) {
