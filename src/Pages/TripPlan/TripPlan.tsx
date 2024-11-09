@@ -6,6 +6,9 @@
   import AddPeople from './AddPeople';
   import Observations from './Observations';
   import Activities from './Activities';
+  import { Avatar } from 'primereact/avatar';
+  import { AvatarGroup } from 'primereact/avatargroup';   //Optional for grouping
+        
 
   const App: React.FC = () => {
     // A simple onDelete function that will log a message to the console
@@ -17,10 +20,12 @@
       <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
         {/* Header Section */}
         <header style={headerStyle}>
-          <h1 style={headerTitleStyle}>TripPlan</h1>
-        </header>
-
-        {/* Main Content Section */}
+          <h1 style={{ ...headerTitleStyle, fontFamily: "'Arial', sans-serif" }}>TripPlan</h1>  </header>
+          <div style={{ position: 'absolute', top: '20px', right: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
+            <Avatar label="J" size="xlarge" shape="circle" />
+            <Avatar label="T" size="large" style={{ backgroundColor: '#2196F3', color: '#ffffff' }} shape="circle" />
+            <Avatar label="F" style={{ backgroundColor: '#9c27b0', color: '#ffffff' }} shape="circle" />
+          </div>  {/* Main Content Section */}
         <div style={{ display: 'flex', flex: 1 }}>
           {/* Left Section (70%) for Dates, Destiny, Transports, Accomodation */}
           <div
