@@ -4,14 +4,14 @@ import { Card } from 'primereact/card';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
+import { useStateTogether } from 'react-together';
 
 const Dates = () => {
-    // Use useState for startDate and endDate
-    const [startDate, setStartDate] = useState<Date | null>(null);
-    const [endDate, setEndDate] = useState<Date | null>(null);
+    const [startDate, setStartDate] = useStateTogether<Date | null>("start date", null);
+    const [endDate, setEndDate] = useStateTogether<Date | null>("end_date", null);
 
     return (
-        <Card title="Trip Plan" style={{ width: '25em', margin: 'auto', marginTop: '2em' }}>
+        <Card title="Trip Plan" style={{ width:  '25em', margin: 'auto', marginTop: '2em' }}>
             <div className="p-field" style={{ marginBottom: '1em' }}>
                 <label htmlFor="startDate">Start Date:</label>
                 <Calendar 
@@ -20,7 +20,6 @@ const Dates = () => {
                     onChange={(e: any) => setStartDate(e.value)} 
                     dateFormat="yy-mm-dd" 
                     placeholder="YYYY-MM-DD" 
-                    showIcon
                 />
             </div>
             <div className="p-field">
@@ -31,7 +30,6 @@ const Dates = () => {
                     onChange={(e: any) => setEndDate(e.value)} 
                     dateFormat="yy-mm-dd" 
                     placeholder="YYYY-MM-DD" 
-                    showIcon
                 />
             </div>
         </Card>
