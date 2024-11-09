@@ -13,8 +13,10 @@ const Observations: React.FC = () => {
     const [observations, setObservations] = useStateTogether<string[]>('observations', []);
 
     const handleSubmit = () => {
-        if (observation) {
-            setObservations([...observations, observation]);
+        if (observation.trim()) {
+            // Append new observation
+            const newObservations = [...observations, observation.trim()];
+            setObservations(newObservations);
             setObservation('');
         } else {
             alert('Please enter an observation before submitting.');
@@ -22,6 +24,7 @@ const Observations: React.FC = () => {
     };
 
     const handleDelete = (index: number) => {
+        // Remove observation by index
         const updatedObservations = observations.filter((_, i) => i !== index);
         setObservations(updatedObservations);
     };
@@ -52,7 +55,7 @@ const Observations: React.FC = () => {
                         <ul className="observation-list">
                             {observations.map((obs, index) => (
                                 <li key={index} className="p-d-flex p-jc-between p-ai-center">
-                                    <span className="p-text-bold">{obs + " "}</span>
+                                    <span className="p-text-bold">{obs+" "}</span>
                                     <Button
                                         icon="pi pi-trash"
                                         className="p-button-rounded p-button-danger p-button-sm delete-button"
