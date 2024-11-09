@@ -17,11 +17,13 @@ const App: React.FC = () => {
       {/* Left Section (70%) for Dates, Destiny, Transports, Accomodation */}
       <div
         style={{
-          flex: 7,  // 70% of available width
+          flex: 6,  // 70% of available width
           padding: '20px',
-          overflowY: 'hidden',  // Disables vertical scrolling
+          overflowY: 'scroll',  // Enables scrolling
+          maxHeight: '100vh', // Ensures content doesn't overflow beyond the viewport
           borderRight: '2px solid #ddd',  // Optional border for separation
         }}
+        className="scroll-container"
       >
         <Dates />
         <div style={{ marginBottom: '10px' }}></div>
@@ -30,20 +32,35 @@ const App: React.FC = () => {
         <Transports />
         <div style={{ marginBottom: '10px' }}></div>
         <Accomodation />
-        <div style={{ marginBottom: '10px' }}></div>
-        <Observations />
       </div>
 
       {/* Right Section (30%) for AddPeople */}
       <div
         style={{
-          flex: 3,  // 30% of available width
+          flex: 4,  // 30% of available width
           padding: '20px',
-          overflowY: 'hidden', // Disables vertical scrolling
+          overflowY: 'scroll', // Enables scrolling
         }}
+        className="scroll-container"
       >
         <AddPeople id={1} name="Who's Joining?" onDelete={handleDelete} />
+        <div style={{ marginBottom: '10px' }}></div>
+        <Observations />
       </div>
+
+      <style>
+        {`
+          /* Hide scrollbar but keep it scrollable */
+          .scroll-container::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+          }
+
+          .scroll-container {
+            overflow-y: scroll; /* Keeps the scrollable area */
+          }
+        `}
+      </style>
     </div>
   );
 };
