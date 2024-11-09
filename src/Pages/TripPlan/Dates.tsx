@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useStateTogether } from 'react-together';
 import { Calendar } from 'primereact/calendar';
 import { Card } from 'primereact/card';
@@ -11,6 +11,10 @@ const Dates = () => {
     const [startDateString, setStartDateString] = useStateTogether<string | null>('start_date', null);
     const [endDateString, setEndDateString] = useStateTogether<string | null>('end_date', null);
 
+    // Error message states
+    const [startDateError, setStartDateError] = useState<string | null>(null);
+    const [endDateError, setEndDateError] = useState<string | null>(null);
+
     // Convert string dates to Date objects for the Calendar component
     const startDate = startDateString ? new Date(startDateString) : null;
     const endDate = endDateString ? new Date(endDateString) : null;
@@ -21,11 +25,12 @@ const Dates = () => {
 
         // Validate: Start date cannot be after end date
         if (newStartDate && endDate && newStartDate > endDate) {
-            alert('Start date cannot be after end date');
-            return; // Stop further execution if validation fails
+            setStartDateError('Start date cannot be after end date');
+            return; // Do not update if validation fails
         }
 
-        // If validation passes, update state
+        // Clear error message and update state if validation passes
+        setStartDateError(null);
         setStartDateString(newStartDate ? newStartDate.toISOString() : null);
     };
 
@@ -35,11 +40,12 @@ const Dates = () => {
 
         // Validate: End date cannot be before start date
         if (newEndDate && startDate && newEndDate < startDate) {
-            alert('End date cannot be before start date');
-            return; // Stop further execution if validation fails
+            setEndDateError('End date cannot be before start date');
+            return; // Do not update if validation fails
         }
 
-        // If validation passes, update state
+        // Clear error message and update state if validation passes
+        setEndDateError(null);
         setEndDateString(newEndDate ? newEndDate.toISOString() : null);
     };
 
@@ -56,6 +62,7 @@ const Dates = () => {
                         placeholder="YYYY-MM-DD"
                         showIcon
                     />
+                    {startDateError && <small style={{ color: 'red' }}>{startDateError}</small>}
                 </div>
                 <div className="p-field">
                     <label htmlFor="endDate">End Date:</label>
@@ -67,6 +74,7 @@ const Dates = () => {
                         placeholder="YYYY-MM-DD"
                         showIcon
                     />
+                    {endDateError && <small style={{ color: 'red' }}>{endDateError}</small>}
                 </div>
             </div>
         </Card>
