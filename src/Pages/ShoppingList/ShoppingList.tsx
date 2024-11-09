@@ -4,7 +4,6 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { Divider } from 'primereact/divider';
-import { Checkbox } from 'primereact/checkbox';
 import styles from '../../styles/ShoppingList/ShoppingList.module.scss';
 
 interface Item {
@@ -17,9 +16,10 @@ interface Item {
 interface ShoppingListProps {
   id: number;
   name: string;
+  onDelete: () => void;
 }
 
-const ShoppingList: React.FC<ShoppingListProps> = ({ id, name }) => {
+const ShoppingList: React.FC<ShoppingListProps> = ({ id, name, onDelete }) => {
   const [items, setItems] = useStateTogether<Item[]>(`items_${id}`, []);
   const [inputValue, setInputValue] = useState('');
 
@@ -67,8 +67,20 @@ const ShoppingList: React.FC<ShoppingListProps> = ({ id, name }) => {
   };
 
   return (
-    <Card title={name} className="p-shadow-5" style={{ marginBottom: '1rem' }}>
-      <div className={`p-inputgroup ${styles.inputGroup}`}>
+    <Card className="p-shadow-5" style={{ marginBottom: '1rem' }}>
+      {/* Title and Delete Button Container */}
+      <div className={styles['cardTitleContainer']}>
+        <h2 className={styles['cardTitle']}>{name}</h2>
+        <Button
+          label="Delete List"
+          icon="pi pi-trash"
+          className={styles['deleteButton']}
+          onClick={onDelete}
+        />
+      </div>
+
+      {/* Add Item Input Group */}
+      <div className={`p-inputgroup ${styles['inputGroup']}`}>
         <InputText
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
@@ -78,45 +90,53 @@ const ShoppingList: React.FC<ShoppingListProps> = ({ id, name }) => {
           label="Add"
           icon="pi pi-plus"
           onClick={addItem}
-          className="p-button-outlined p-button-success"
+          className={styles['roundedButton']}
         />
       </div>
       <Divider />
-      <div className={styles.shoppingListItems}>
+
+      {/* Shopping List Items */}
+      <div className={styles['shoppingListItems']}>
         {items.length === 0 ? (
           <p className="p-text-center p-text-muted">No items added</p>
         ) : (
           items.map((item) => (
-            <div key={item.id} className={styles.shoppingListItem}>
-              <div className={styles.itemDetails}>
-                <Checkbox
-                  checked={item.purchased}
-                  onChange={() => toggleItemPurchased(item.id)}
-                />
+            <div key={item.id} className={styles['shoppingListItem']}>
+              <div className={styles['itemDetails']}>
+                {/* Custom Checkbox */}
+                <label className={styles['customCheckbox']}>
+                  <input
+                    type="checkbox"
+                    checked={item.purchased}
+                    onChange={() => toggleItemPurchased(item.id)}
+                  />
+                  <span className={styles['checkmark']}></span>
+                </label>
+
                 <span
-                  className={`${styles.itemName} ${item.purchased ? styles.purchased : ''}`}
+                  className={`${styles['itemName']} ${item.purchased ? styles['purchased'] : ''}`}
                   onClick={() => toggleItemPurchased(item.id)}
                 >
                   {item.name}
                 </span>
-                <div className={styles.quantityControls}>
+                <div className={styles['quantityControls']}>
                   <Button
                     icon="pi pi-minus"
-                    className="p-button-rounded p-button-text p-button-sm"
+                    className={`${styles['iconOnlyButton']} p-button-text p-button-sm`}
                     onClick={() => decreaseQuantity(item.id)}
                     disabled={item.quantity <= 1}
                   />
-                  <span className={styles.quantity}>{item.quantity}</span>
+                  <span className={styles['quantity']}>{item.quantity}</span>
                   <Button
                     icon="pi pi-plus"
-                    className="p-button-rounded p-button-text p-button-sm"
+                    className={`${styles['iconOnlyButton']} p-button-text p-button-sm`}
                     onClick={() => increaseQuantity(item.id)}
                   />
                 </div>
               </div>
               <Button
                 icon="pi pi-times"
-                className="p-button-rounded p-button-text p-button-plain"
+                className={`${styles['iconOnlyRemoveButton']} p-button-text p-button-plain`}
                 onClick={() => deleteItem(item.id)}
               />
             </div>
