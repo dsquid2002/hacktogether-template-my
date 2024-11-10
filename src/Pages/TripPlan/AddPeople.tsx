@@ -5,13 +5,14 @@ import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { Divider } from 'primereact/divider';
 import styles from '../../styles/ShoppingList/ShoppingList.module.scss';
+import useHover from './HoveringUserList'; // Import the custom hook for hover
 
 interface Item {
     id: number;
     name: string;
     purchased: boolean;
     quantity: number;
-    budget: number;  // Added budget property
+    budget: number;
 }
 
 interface PeopleListProps {
@@ -23,20 +24,25 @@ interface PeopleListProps {
 const ShoppingList: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
     const [items, setItems] = useStateTogether<Item[]>(`items_${id}`, []);
     const [inputValue, setInputValue] = useState('');
-    const [budgetValue, setBudgetValue] = useState<number>(0);  // State for budget value
+    const [budgetValue, setBudgetValue] = useState<number>(0);
+
+    // Hover hooks for item and buttons
+    const { isHovered: isItemHovered, onMouseEnter: onItemMouseEnter, onMouseLeave: onItemMouseLeave } = useHover();
+    const { isHovered: isAddButtonHovered, onMouseEnter: onAddButtonMouseEnter, onMouseLeave: onAddButtonMouseLeave } = useHover();
+    const { isHovered: isDeleteButtonHovered, onMouseEnter: onDeleteButtonMouseEnter, onMouseLeave: onDeleteButtonMouseLeave } = useHover();
 
     const addItem = () => {
-        if (inputValue.trim() !== '' && budgetValue > 0) {  // Ensure budget is a positive number
+        if (inputValue.trim() !== '' && budgetValue > 0) {
             const newItem: Item = {
                 id: Date.now(),
                 name: inputValue,
                 purchased: false,
                 quantity: 1,
-                budget: budgetValue, // Set the budget for the new item
+                budget: budgetValue,
             };
             setItems([...items, newItem]);
             setInputValue('');
-            setBudgetValue(0);  // Reset budget field after adding item
+            setBudgetValue(0);
         }
     };
 
@@ -54,12 +60,10 @@ const ShoppingList: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
 
     return (
         <Card className={`${styles['p-shadow-5']} ${styles['card']}`} style={{ marginBottom: '1rem' }}>
-            {/* Title and Delete Button Container */}
             <div className={styles['cardTitleContainer']}>
                 <h2 className={styles['cardTitle']}>{name}</h2>
             </div>
 
-            {/* Add Item Input Group */}
             <div className={`p-inputgroup ${styles['inputGroup']}`}>
                 <InputText
                     value={inputValue}
@@ -69,7 +73,7 @@ const ShoppingList: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
                 <InputText
                     type="number"
                     onChange={(e) => setBudgetValue(parseInt(e.target.value, 10))}
-                    placeholder="€"  // Placeholder with euro symbol
+                    placeholder="€"
                     min={1}
                 />
                 <Button
@@ -77,17 +81,30 @@ const ShoppingList: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
                     icon="pi pi-plus"
                     onClick={addItem}
                     className={`${styles['roundedButton']} p-button-rounded p-button-primary`}
+                    onMouseEnter={onAddButtonMouseEnter}
+                    onMouseLeave={onAddButtonMouseLeave}
+                    style={{
+                        backgroundColor: isAddButtonHovered ? '#007bff' : '', // Change color on hover
+                    }}
                 />
             </div>
             <Divider />
 
-            {/* Shopping List Items */}
             <div className={styles['shoppingListItems']} style={{ maxHeight: '300px', overflowY: 'auto' }}>
                 {items.length === 0 ? (
                     <p className="p-text-center p-text-muted">No items added</p>
                 ) : (
                     items.map((item) => (
-                        <div key={item.id} className={`${styles['shoppingListItem']} ${item.purchased ? styles['purchased'] : ''}`}>
+                        <div
+                            key={item.id}
+                            className={`${styles['shoppingListItem']} ${item.purchased ? styles['purchased'] : ''}`}
+                            onMouseEnter={onItemMouseEnter}
+                            onMouseLeave={onItemMouseLeave}
+                            style={{
+                                backgroundColor: isItemHovered ? '#f0f0f0' : '', // Hover effect for item
+                                transition: 'background-color 0.3s ease',
+                            }}
+                        >
                             <div className={styles['itemDetails']}>
                                 <span
                                     className={styles['itemName']}
@@ -96,7 +113,6 @@ const ShoppingList: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
                                     {item.name}
                                 </span>
 
-                                {/* Budget Section */}
                                 <div className={styles['quantityControls']}>
                                     <span className={styles['quantityTitle']}>Budget: </span>
                                     <span className={styles['quantityValue']}>{item.budget}€</span>
@@ -106,6 +122,11 @@ const ShoppingList: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
                                 icon="pi pi-times"
                                 className={`${styles['iconOnlyRemoveButton']} p-button-text p-button-plain`}
                                 onClick={() => deleteItem(item.id)}
+                                onMouseEnter={onDeleteButtonMouseEnter}
+                                onMouseLeave={onDeleteButtonMouseLeave}
+                                style={{
+                                    color: isDeleteButtonHovered ? '#d9534f' : '', // Hover effect for delete button
+                                }}
                             />
                         </div>
                     ))

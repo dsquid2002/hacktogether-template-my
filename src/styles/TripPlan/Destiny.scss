@@ -58,3 +58,16 @@
 .destiny-button-container .p-button-rounded:hover {
     transform: scale(1.05);
 }
+
+/* Custom styles for hover effects */
+.hovered-card {
+    background-color: #f0f0f0; /* Light gray background when hovered */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* Shadow effect on hover */
+  }
+  
+  .hovered-button {
+    background-color: #007bff; /* Blue background when hovered */
+    color: white; /* White text color when hovered */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Button shadow on hover */
+  }
+  

@@ -20,7 +20,7 @@
       <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
         {/* Header Section */}
         <header style={headerStyle}>
-          <h1 style={{ ...headerTitleStyle, fontFamily: "'Arial', sans-serif" }}>TripPlan</h1>  </header>
+          <h1 style={{ ...headerTitleStyle, fontFamily: "'Arial', sans-serif" }}>MultiPlan</h1>  </header>
           <div style={{ position: 'absolute', top: '20px', right: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
             <Avatar label="J" size="xlarge" shape="circle" />
             <Avatar label="T" size="large" style={{ backgroundColor: '#2196F3', color: '#ffffff' }} shape="circle" />

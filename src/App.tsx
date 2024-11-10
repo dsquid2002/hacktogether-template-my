@@ -1,12 +1,14 @@
-import React from 'react';
-import ShoppingList from './Pages/ShoppingList/ShoppingList';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import LandingPage from './Pages/LandingPage';
+import TripPlan from './Pages/TripPlan/TripPlan';
 
-const App: React.FC = () => {
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <div>
-      <ShoppingList id={1} name="Groceries" />
-      <ShoppingList id={2} name="Household Supplies" />
-    </div>
+    <div>sfstst</div>
   );
 };
 

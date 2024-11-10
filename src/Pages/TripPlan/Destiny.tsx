@@ -7,10 +7,15 @@ import 'primeicons/primeicons.css';
 import { Card } from 'primereact/card';
 import 'src/styles/TripPlan/Destiny.scss'; // Import custom CSS
 import { useStateTogether } from 'react-together';
+import useHover from './HoveringUserList'; // Import the custom hook
 
 const Destiny: React.FC = () => {
     const [destination, setDestination] = useState('');
     const [submittedDestination, setSubmittedDestination] = useStateTogether<string>('destination', '');
+    
+    // Use the useHover hook for the card and button
+    const { isHovered: isCardHovered, onMouseEnter: onCardMouseEnter, onMouseLeave: onCardMouseLeave } = useHover();
+    const { isHovered: isButtonHovered, onMouseEnter: onButtonMouseEnter, onMouseLeave: onButtonMouseLeave } = useHover();
 
     const handleSubmit = () => {
         if (destination.trim()) {
@@ -19,7 +24,13 @@ const Destiny: React.FC = () => {
     };
 
     return (
-        <Card title="Destination" className="p-shadow-5 " style={{ marginBottom: '1rem' }}>
+        <Card
+            title="Destination"
+            className={`p-shadow-5 ${isCardHovered ? 'hovered-card' : ''}`} // Apply hover class conditionally
+            style={{ marginBottom: '1rem' }}
+            onMouseEnter={onCardMouseEnter} // Set hover event for the Card
+            onMouseLeave={onCardMouseLeave}
+        >
             <div className="destiny-container p-fluid">
                 {/* Campo de entrada para o destino */}
                 <div className="p-field destiny-field">
@@ -33,8 +44,16 @@ const Destiny: React.FC = () => {
                     />
                 </div>
                 {/* Botão de envio */}
-                <div className="destiny-button-container p-d-flex p-jc-center p-mt-3">
-                    <Button label="Submit" onClick={handleSubmit} className="p-button-rounded p-button-primary" />
+                <div
+                    className="destiny-button-container p-d-flex p-jc-center p-mt-3"
+                    onMouseEnter={onButtonMouseEnter} // Set hover event for the Button
+                    onMouseLeave={onButtonMouseLeave}
+                >
+                    <Button
+                        label="Submit"
+                        onClick={handleSubmit}
+                        className={`p-button-rounded p-button-primary ${isButtonHovered ? 'hovered-button' : ''}`} // Apply hover class conditionally
+                    />
                 </div>
 
                 {/* Exibição do destino submetido */}
