@@ -5,6 +5,9 @@ $text-color: #ffffff;
 $checkbox-color-on: #42b983;
 $checkbox-color-off: #ccc;
 
+.child-element {
+  all: unset;
+}
 // Main container for the entire shopping list, taking up 80% of the screen width
 .shoppingListContainer {
   max-width: 80vw;

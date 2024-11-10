@@ -3,7 +3,7 @@ import { RadioButton } from 'primereact/radiobutton';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
-import 'src/styles/TripPlan/Transports.scss'; // Import custom SCSS
+import './Transports.module.scss'; // Import custom SCSS
 import { useStateTogether } from 'react-together';
 
 const Transports: React.FC = () => {

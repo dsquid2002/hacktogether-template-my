@@ -9,13 +9,17 @@ import Activities from './Activities';
 import { Avatar } from 'primereact/avatar';
 import { AvatarGroup } from 'primereact/avatargroup'; //Optional for grouping
 import ExportToCSV from './ExportToCSV';
+interface TripPlangPageProps {
+  sessionName: string;
+  sessionPassword: string;
+}
 
-const App: React.FC = () => {
+const App: React.FC<TripPlangPageProps> = ({ sessionName, sessionPassword }) => {
   // A simple onDelete function that will log a message to the console
   const handleDelete = () => {
     console.log('Delete action triggered for the shopping list');
   };
-
+  
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       {/* Header Section */}

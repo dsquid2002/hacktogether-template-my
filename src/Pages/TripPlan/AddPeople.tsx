@@ -4,7 +4,7 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { Divider } from 'primereact/divider';
-import styles from '../../styles/ShoppingList/ShoppingList.module.scss';
+import styles from './AddPeople.module.scss'
 import useHover from './HoveringUserList'; // Import the custom hook for hover
 
 interface Item {
@@ -21,7 +21,7 @@ interface PeopleListProps {
     onDelete: () => void;
 }
 
-const ShoppingList: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
+const AddPeople: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
     const [items, setItems] = useStateTogether<Item[]>(`items_${id}`, []);
     const [inputValue, setInputValue] = useState('');
     const [budgetValue, setBudgetValue] = useState<number>(0);
@@ -142,4 +142,4 @@ const ShoppingList: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
     );
 };
 
-export default ShoppingList;
+export default AddPeople;

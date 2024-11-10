@@ -3,7 +3,8 @@ import { useStateTogether } from 'react-together';
 import ShoppingList from './ShoppingList';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
-import styles from '../../styles/ShoppingList/ShoppingListLandingPage.module.scss';
+import { useNavigate } from 'react-router-dom';
+import styles from './ShoppingListLandingPage.module.scss';
 
 interface List {
   id: number;
@@ -18,6 +19,7 @@ interface ShoppingListLandingPageProps {
 const ShoppingListLandingPage: React.FC<ShoppingListLandingPageProps> = ({ sessionName, sessionPassword }) => {
   const [lists, setLists] = useStateTogether<List[]>('sharedLists', []);
   const [newListName, setNewListName] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log("Session initialized with name:", sessionName, "and password:", sessionPassword);
@@ -38,14 +40,17 @@ const ShoppingListLandingPage: React.FC<ShoppingListLandingPageProps> = ({ sessi
     setLists(lists.filter((list) => list.id !== id));
   };
 
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
     <div className={styles['app-container']}>
-      {/* Navbar */}
       <nav className={styles['navbar']}>
         <h1>Our Shopping List</h1>
+        <Button label="Go Back" onClick={goBack} className={`${styles['goBackButton']} p-button-text`} />
       </nav>
 
-      {/* Create List Section */}
       <div className={styles['create-list-section']}>
         <InputText
           value={newListName}
@@ -61,7 +66,6 @@ const ShoppingListLandingPage: React.FC<ShoppingListLandingPageProps> = ({ sessi
         />
       </div>
 
-      {/* Lists Container */}
       <div className={styles['lists-container']}>
         {lists.map((list) => (
           <div key={list.id} className={styles['list-card']}>

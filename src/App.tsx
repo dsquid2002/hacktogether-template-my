@@ -1,28 +1,30 @@
 // App.tsx
-import React, { useState } from 'react';
-import ShoppingListSessionJoiner from './Pages/ShoppingList/ShoppingListSessionJoiner';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import SessionJoiner from './Pages/SessionJoiner/SessionJoiner';
+
+const PlannerSelection: React.FC = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div>
+      <h1>Select a Planner</h1>
+      <button onClick={() => navigate('/session/join/shopping')}>Shopping List</button>
+      <button onClick={() => navigate('/session/join/trip')}>Trip Planner</button>
+      <button onClick={() => navigate('/session/join/gathering')}>Gathering Planner</button>
+    </div>
+  );
+};
 
 const App: React.FC = () => {
-  const [plannerType, setPlannerType] = useState<string | null>(null);
-
-  const renderPlanner = () => {
-    switch (plannerType) {
-      case 'shopping':
-        return <ShoppingListSessionJoiner />;
-      default:
-        return (
-          <div>
-            <h1>Select a Planner</h1>
-            <button onClick={() => setPlannerType('shopping')}>Shopping List</button>
-            <button onClick={() => setPlannerType('trip')}>Trip Planner</button>
-            <button onClick={() => setPlannerType('gathering')}>Gathering Planner</button>
-          </div>
-        );
-    }
-  };
-
-  return <div>{renderPlanner()}</div>;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<PlannerSelection />} />
+        <Route path="/session/join/:plannerType" element={<SessionJoiner />} />
+      </Routes>
+    </Router>
+  );
 };
 
 export default App;
-

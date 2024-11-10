@@ -5,7 +5,7 @@ import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { Divider } from 'primereact/divider';
-import 'src/styles/TripPlan/Activities.scss'; // Import custom CSS
+import './Activities.module.scss'; // Import custom CSS
 import { useStateTogether } from 'react-together';
 
 interface Activity {

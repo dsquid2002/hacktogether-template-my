@@ -5,7 +5,7 @@
     import 'primereact/resources/primereact.min.css';
     import 'primeicons/primeicons.css';
     import { Card } from 'primereact/card';
-    import 'src/styles/TripPlan/Destiny.scss'; // Import custom CSS
+    import './Destiny.module.scss'; // Import custom CSS
     import { useStateTogether } from 'react-together';
     import useHover from './HoveringUserList'; // Import the custom hook
 

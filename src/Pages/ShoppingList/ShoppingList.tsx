@@ -4,7 +4,7 @@ import { InputText } from 'primereact/inputtext';
 import { Card } from 'primereact/card';
 import { Divider } from 'primereact/divider';
 import { FaTrash, FaPlus, FaMinus, FaTimes } from 'react-icons/fa';
-import styles from '../../styles/ShoppingList/ShoppingList.module.scss';
+import styles from './ShoppingList.module.scss'
 
 interface Item {
   id: number;

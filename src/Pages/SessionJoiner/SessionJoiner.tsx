@@ -1,11 +1,13 @@
-// ShoppingListSessionJoiner.tsx
+// SessionJoiner.tsx
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
-import ShoppingListSessionInitializer from './ShoppingListSessionInitializer';
-import styles from '../../styles/ShoppingList/ShoppingListSessionJoiner.module.scss';
+import SessionInitializer from './SessionInitializer';
+import styles from './SessionJoiner.module.scss'
 
-const ShoppingListSessionJoiner: React.FC = () => {
+const SessionJoiner: React.FC = () => {
+  const { plannerType } = useParams<{ plannerType: string }>(); // Get plannerType from the URL
   const [sessionName, setSessionName] = useState('');
   const [sessionPassword, setSessionPassword] = useState('');
   const [isSessionStarted, setIsSessionStarted] = useState(false);
@@ -31,7 +33,7 @@ const ShoppingListSessionJoiner: React.FC = () => {
     <div className={styles['app-container']}>
       {!isSessionStarted ? (
         <div className={styles['session-inputs']}>
-          <h2>Create or Join a Session</h2>
+          <h2>Create or Join a Session for {plannerType}</h2>
           <div className={styles['input-group']}>
             <InputText
               value={sessionName}
@@ -57,10 +59,14 @@ const ShoppingListSessionJoiner: React.FC = () => {
           </div>
         </div>
       ) : (
-        <ShoppingListSessionInitializer sessionName={sessionName} sessionPassword={sessionPassword} />
+        <SessionInitializer
+          sessionName={sessionName}
+          sessionPassword={sessionPassword}
+          sessionType={plannerType || ''}
+        />
       )}
     </div>
   );
 };
 
-export default ShoppingListSessionJoiner  ;
+export default SessionJoiner;

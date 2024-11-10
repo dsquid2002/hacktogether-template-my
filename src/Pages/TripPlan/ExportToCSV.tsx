@@ -4,7 +4,7 @@ import { Card } from 'primereact/card';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
-import 'src/styles/TripPlan/ExportToCSV.scss'; // Assuming this CSS file contains the custom styles
+import './ExportToCSV.module.scss'; // Assuming this CSS file contains the custom styles
 
 const ExportToCSV: React.FC = () => {
     const data = [
