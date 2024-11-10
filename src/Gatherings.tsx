@@ -130,9 +130,11 @@ const Gathering: React.FC = () => {
                                 className={styles.inputField}
                             />
                             <div
-                            style={{
-                                display: 'flex',
-                            }}
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    width: '100%',
+                                }}
                             >
                                 <Button
                                     label="Cancel"
