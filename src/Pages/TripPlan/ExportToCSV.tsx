@@ -8,7 +8,7 @@ import 'src/styles/TripPlan/ExportToCSV.scss'; // Assuming this CSS file contain
 
 const ExportToCSV: React.FC = () => {
     const data = [
-        { name: 'John Doe', age: 28, email: 'john@example.com' },
+        { name: 'TRIP DATA', Date: 0, Destiny: 'DATA' },
     ];
 
     const convertToCSV = (array: any[]) => {
