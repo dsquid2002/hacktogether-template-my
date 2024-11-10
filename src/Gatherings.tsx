@@ -88,8 +88,8 @@ const Gathering: React.FC = () => {
                 <h2 className={styles.cardTitle}>Gatherings</h2>
                 {isPromptOpen && (
                     <div className={styles['cardTitleContainer']}>
-                        <div className={styles.inputFields}>
-                            <input
+                        <div className={styles['create-list-section']}>
+                            <InputText
                                 type="text"
                                 value={formData.name}
                                 name="name"
@@ -97,7 +97,7 @@ const Gathering: React.FC = () => {
                                 placeholder="Enter your name"
                                 className={styles.inputField}
                             />
-                            <input
+                            <InputText
                                 type="text"
                                 name="place"
                                 value={formData.place}
@@ -105,7 +105,7 @@ const Gathering: React.FC = () => {
                                 placeholder="Enter the place's name"
                                 className={styles.inputField}
                             />
-                            <input
+                            <InputText
                                 type="text"
                                 name="address"
                                 value={formData.address}
@@ -113,7 +113,7 @@ const Gathering: React.FC = () => {
                                 placeholder="Enter the address"
                                 className={styles.inputField}
                             />
-                            <input
+                            <InputText
                                 type="date"
                                 name="date"
                                 value={formData.date}
@@ -121,7 +121,7 @@ const Gathering: React.FC = () => {
                                 placeholder="Enter the date"
                                 className={styles.inputField}
                             />
-                            <input
+                            <InputText
                                 type="time"
                                 name="time"
                                 value={formData.time}
@@ -129,18 +129,24 @@ const Gathering: React.FC = () => {
                                 placeholder="Enter the time"
                                 className={styles.inputField}
                             />
-                            <Button
-                                label="Cancel"
-                                icon="pi pi-times"
-                                onClick={handleCancelClick}
-                                className="p-button-outlined p-button-danger"
-                            />
-                            <Button
-                                label="Ok"
-                                icon="pi pi-check"
-                                onClick={handleOkClick}
-                                className="p-button-outlined p-button-success"
-                            />
+                            <div
+                            style={{
+                                display: 'flex',
+                            }}
+                            >
+                                <Button
+                                    label="Cancel"
+                                    icon="pi pi-times"
+                                    onClick={handleCancelClick}
+                                    className={`p-button-outlined p-button-danger ${styles['roundedButton']}`}
+                                />
+                                <Button
+                                    label="Ok"
+                                    icon="pi pi-check"
+                                    onClick={handleOkClick}
+                                    className={`p-button-outlined p-button-danger ${styles['roundedButton']}`}
+                                />
+                            </div>
                         </div>
                     </div>
                 )}

@@ -48,10 +48,9 @@ html, body {
 .create-list-section {
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 0.5rem;
   margin: 0; // Remove top and bottom margin
-  width: 80%;
+  width: 100%;
   max-width: 500px;
 
   input {
@@ -77,6 +76,9 @@ html, body {
   }
 
   .roundedButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: $button-color;
     color: $text-color;
     border: none;
@@ -113,7 +115,7 @@ html, body {
 .cardTitleContainer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 1rem;
 }
 
