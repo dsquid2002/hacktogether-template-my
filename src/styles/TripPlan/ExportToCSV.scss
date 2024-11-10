@@ -1,6 +1,7 @@
 /* Custom styles for hover effects */
 .destiny-card {
-    width: 40em;
+    width: 100%; /* Adapta-se à largura da página */
+    max-width: 30em; /* Define um tamanho máximo */
     margin: auto;
     background-color: #f7f7f7;
     border-radius: 50px;

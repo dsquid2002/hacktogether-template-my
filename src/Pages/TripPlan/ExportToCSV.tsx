@@ -4,7 +4,7 @@ import { Card } from 'primereact/card';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
-import './App.css'; // Assuming custom CSS with hover effects and transitions
+import 'src/styles/TripPlan/ExportToCSV.scss'; // Assume que contém os estilos customizados
 
 const ExportToCSV: React.FC = () => {
     const data = [
