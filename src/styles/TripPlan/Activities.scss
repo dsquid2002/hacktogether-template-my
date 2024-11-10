@@ -1,0 +1,145 @@
+/* Custom Styles for Activities Component */
+
+/* Destiny Card with Animated Border */
+.destiny-card {
+    width: 40em;
+    margin: auto;
+    background-color: #f7f7f7;
+    border-radius: 12px;
+    padding: 1em;
+    position: relative;
+    border: 2px solid transparent; /* Initial transparent border */
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.destiny-card:hover {
+    border-color: #007ad9; /* Blue border on hover */
+    box-shadow: 0 4px 15px rgba(0, 122, 217, 0.2); /* Soft shadow on hover */
+}
+
+/* Destiny Container with background and border animation */
+.destiny-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f9f9f9; /* Light grey background */
+    padding: 1rem;
+    border-radius: 5px;
+    border: 2px solid transparent; /* Transparent border initially */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.destiny-container:hover {
+    border-color: #007ad9; /* Blue border on hover */
+    box-shadow: 0 4px 12px rgba(0, 122, 217, 0.3); /* Soft shadow */
+}
+
+/* Input field border animation */
+.destiny-input {
+    width: 100%;
+    margin-top: 0.5em;
+    border: 2px solid transparent;
+    padding: 0.8em;
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.destiny-input:focus {
+    border-color: #007ad9; /* Blue border on focus */
+    box-shadow: 0 0 5px rgba(0, 122, 217, 0.3); /* Soft shadow on focus */
+}
+
+/* Button styling with hover effect */
+.destiny-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.custom-reset-button {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    width: 100%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.custom-reset-button:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: scale(1.05); /* Slightly increase button size on hover */
+}
+
+.custom-reset-button:focus {
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+/* Destiny info with smoother animation */
+.destiny-info {
+    margin-top: 1.5em;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.destiny-info h3 {
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+}
+
+.destiny-info p {
+    font-size: 1.1em;
+    color: #333;
+}
+
+/* Activites list items with animated borders */
+.activity-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.activity-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5em;
+    padding: 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+}
+
+.activity-list li:hover {
+    border-color: #007ad9; /* Blue border on hover */
+    box-shadow: 0 4px 10px rgba(0, 122, 217, 0.2); /* Soft shadow on hover */
+}
+
+.activity-list li .p-text-bold {
+    margin-right: 1em;
+}
+
+/* Delete button with hover effect */
+.delete-button {
+    margin-left: auto;
+    padding: 0.2em 0.4em;
+    font-size: 0.85em;
+    background-color: #f44336; /* Red color for delete */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+    transform: scale(1.1); /* Slightly enlarge delete button on hover */
+}
+
+/* Smooth appearance for destiny-info when displayed */
+.destiny-info.show {
+    opacity: 1;
+}
+
+

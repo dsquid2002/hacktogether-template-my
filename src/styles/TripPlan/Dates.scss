@@ -1,0 +1,57 @@
+/* Custom Styles for Dates Component */
+
+/* Card styling */
+.dates-card {
+    width: 40em; /* Increased width */
+    margin: 0.8em;
+    background-color: #f7f7f7;
+    border-radius: 50px;
+    padding: 0.5em;
+}
+
+/* Flex container to align fields properly */
+.dates-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5em;
+}
+
+/* Form field container for consistent spacing */
+.dates-field {
+    width: 45%;
+}
+
+/* Error text styling */
+.error-text {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.5em;
+}
+
+/* Calendar styling */
+.dates-calendar {
+    width: 100%;
+    margin-top: 0.8em;
+}
+
+/* Button styling */
+.p-button-outlined {
+    margin-top: 1em;
+    width: 100%;
+}
+/* Hover effect for date fields */
+.dates-field {
+    transition: background-color 0.3s ease;
+}
+
+.dates-calendar.hovered-input {
+    border: 1px solid #007bff; /* Change border color on hover */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add a subtle shadow */
+}
+
+/* Hover effect for the reset button */
+.hovered-button {
+    background-color: #d9534f; /* Change background on hover */
+    color: white; /* Change text color on hover */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}

@@ -1,0 +1,117 @@
+/* Custom Styles for Accomodation Component */
+
+/* Card container styling */
+.accomodation-card {
+    width: 40em;
+    margin: 2em auto;
+    background-color: #f7f7f7;
+    border-radius: 25px;
+    padding: 2em;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.accomodation-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+}
+
+/* Main container for centering */
+.accomodation-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Header styling */
+.accomodation-header {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5em;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+}
+
+/* Container for the radio buttons */
+.accomodation-field-container {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1.5em;
+    margin-bottom: 1.5em;
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+
+/* Styling for each radio button field */
+.accomodation-field {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    padding: 0.5em 1em;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for each accommodation option */
+.accomodation-field:hover {
+    background-color: #e0e0e0;
+}
+
+/* Styling for the labels next to radio buttons */
+.accomodation-field label {
+    margin-left: 0.5em;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+
+}
+
+/* Info section for the selected accommodation */
+.accomodation-info {
+    margin-top: 2em;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+    font-weight: 500;
+    font-family: 'Arial', sans-serif;
+    
+}
+
+/* Custom radio button styles */
+.p-field-radiobutton input:checked + label {
+    color: #007bff; /* Highlight label color when checked */
+    font-weight: bold;
+}
+
+/* Custom button styling for reset (if needed) */
+.custom-reset-button {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    width: 100%;
+    height: 2.5em;
+    font-size: 0.9rem;
+}
+
+.custom-reset-button:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.custom-reset-button:focus {
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+/* Custom styles for hover effects */
+.hovered-card {
+    background-color: #f0f0f0; /* Light gray background when hovered */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* Shadow effect on hover */
+  }
+  
+  .hovered-button {
+    background-color: #007bff; /* Blue background when hovered */
+    color: white; /* White text color when hovered */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Button shadow on hover */
+  }

@@ -1,0 +1,67 @@
+/* Custom Styles for Observations Component */
+
+.destiny-card {
+    width: 40em;
+    margin: auto;
+    background-color: #f7f7f7;
+    border-radius: 50px;    
+    padding: 0.5em;
+}
+
+.destiny-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.destiny-field {
+    margin-bottom: 1em;
+}
+
+.destiny-input {
+    width: 100%;
+    margin-top: 0.5em;
+}
+
+.destiny-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.custom-reset-button {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    width: 100%;
+}
+
+.custom-reset-button:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.custom-reset-button:focus {
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+.destiny-info {
+    margin-top: 1.5em;
+    text-align: center;
+}
+
+.destiny-info h3 {
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+}
+
+.destiny-info p {
+    font-size: 1.1em;
+    color: #333;
+}
+
+.observation-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
