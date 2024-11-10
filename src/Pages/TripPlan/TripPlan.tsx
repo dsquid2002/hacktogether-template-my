@@ -8,6 +8,7 @@
   import Activities from './Activities';
   import { Avatar } from 'primereact/avatar';
   import { AvatarGroup } from 'primereact/avatargroup';   //Optional for grouping
+  import ExportToCSV from './ExportToCSV';
         
 
   const App: React.FC = () => {
@@ -61,6 +62,8 @@
             <AddPeople id={1} name="Who's Joining?" onDelete={handleDelete} />
             <div style={{ marginBottom: '10px' }}></div>
             <Observations />
+            <div style={{ marginBottom: '10px' }}></div>
+            <ExportToCSV />
           </div>
         </div>
 

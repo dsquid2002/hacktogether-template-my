@@ -7,6 +7,7 @@ import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'src/styles/TripPlan/Dates.scss'; // Import custom CSS
+import useHover from './HoveringUserList'; // Import the custom hook
 
 const Dates = () => {
     // Store dates as strings to avoid issues with Date objects
@@ -59,8 +60,17 @@ const Dates = () => {
         setEndDateError(null);
     };
 
+    // Use hover hook for the card
+    const { isHovered, onMouseEnter, onMouseLeave } = useHover();
+
     return (
-        <Card title="Dates" className="p-shadow-5 " style={{ marginBottom: '1rem' }}>
+        <Card
+            title="Dates"
+            className={`p-shadow-5 ${isHovered ? 'hovered-card' : ''}`} // Apply hover class conditionally
+            style={{ marginBottom: '1rem' }}
+            onMouseEnter={onMouseEnter} // Set hover event for the Card
+            onMouseLeave={onMouseLeave}
+        >
             <div className="dates-container">
                 <div className="p-field dates-field">
                     <label htmlFor="startDate">Start Date:</label>
@@ -75,6 +85,7 @@ const Dates = () => {
                     />
                     {startDateError && <small className="error-text">{startDateError}</small>}
                 </div>
+
                 <div className="p-field dates-field">
                     <label htmlFor="endDate">End Date:</label>
                     <Calendar
@@ -89,6 +100,7 @@ const Dates = () => {
                     {endDateError && <small className="error-text">{endDateError}</small>}
                 </div>
             </div>
+
             <Button label="Reset" onClick={resetDates} className="p-button-outlined p-button-danger" />
         </Card>
     );

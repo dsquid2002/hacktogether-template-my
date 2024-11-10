@@ -27,6 +27,7 @@ const ShoppingList: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
     const [budgetValue, setBudgetValue] = useState<number>(0);
 
     // Hover hooks for item and buttons
+    const { isHovered: isCardHovered, onMouseEnter: onCardMouseEnter, onMouseLeave: onCardMouseLeave } = useHover();
     const { isHovered: isItemHovered, onMouseEnter: onItemMouseEnter, onMouseLeave: onItemMouseLeave } = useHover();
     const { isHovered: isAddButtonHovered, onMouseEnter: onAddButtonMouseEnter, onMouseLeave: onAddButtonMouseLeave } = useHover();
     const { isHovered: isDeleteButtonHovered, onMouseEnter: onDeleteButtonMouseEnter, onMouseLeave: onDeleteButtonMouseLeave } = useHover();
@@ -59,7 +60,12 @@ const ShoppingList: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
     };
 
     return (
-        <Card className={`${styles['p-shadow-5']} ${styles['card']}`} style={{ marginBottom: '1rem' }}>
+        <Card
+            className={`${styles['p-shadow-5']} ${styles['card']} ${isCardHovered ? styles['hovered-card'] : ''}`} // Apply hover effect to the card
+            style={{ marginBottom: '1rem' }}
+            onMouseEnter={onCardMouseEnter} // Hover effect for the card
+            onMouseLeave={onCardMouseLeave}
+        >
             <div className={styles['cardTitleContainer']}>
                 <h2 className={styles['cardTitle']}>{name}</h2>
             </div>
@@ -68,7 +74,7 @@ const ShoppingList: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
                 <InputText
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Add a person"
+                    placeholder="Add an item"
                 />
                 <InputText
                     type="number"
@@ -81,10 +87,10 @@ const ShoppingList: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
                     icon="pi pi-plus"
                     onClick={addItem}
                     className={`${styles['roundedButton']} p-button-rounded p-button-primary`}
-                    onMouseEnter={onAddButtonMouseEnter}
+                    onMouseEnter={onAddButtonMouseEnter} // Add hover effect to the Add button
                     onMouseLeave={onAddButtonMouseLeave}
                     style={{
-                        backgroundColor: isAddButtonHovered ? '#007bff' : '', // Change color on hover
+                        backgroundColor: isAddButtonHovered ? '#007bff' : '', // Change background color when hovered
                     }}
                 />
             </div>
@@ -98,10 +104,10 @@ const ShoppingList: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
                         <div
                             key={item.id}
                             className={`${styles['shoppingListItem']} ${item.purchased ? styles['purchased'] : ''}`}
-                            onMouseEnter={onItemMouseEnter}
+                            onMouseEnter={onItemMouseEnter} // Hover effect for each item
                             onMouseLeave={onItemMouseLeave}
                             style={{
-                                backgroundColor: isItemHovered ? '#f0f0f0' : '', // Hover effect for item
+                                backgroundColor: isItemHovered ? '#f0f0f0' : '', // Change background color on hover
                                 transition: 'background-color 0.3s ease',
                             }}
                         >
@@ -122,10 +128,10 @@ const ShoppingList: React.FC<PeopleListProps> = ({ id, name, onDelete }) => {
                                 icon="pi pi-times"
                                 className={`${styles['iconOnlyRemoveButton']} p-button-text p-button-plain`}
                                 onClick={() => deleteItem(item.id)}
-                                onMouseEnter={onDeleteButtonMouseEnter}
+                                onMouseEnter={onDeleteButtonMouseEnter} // Add hover effect to the Delete button
                                 onMouseLeave={onDeleteButtonMouseLeave}
                                 style={{
-                                    color: isDeleteButtonHovered ? '#d9534f' : '', // Hover effect for delete button
+                                    color: isDeleteButtonHovered ? '#d9534f' : '', // Change color on hover for Delete button
                                 }}
                             />
                         </div>
