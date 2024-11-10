@@ -32,8 +32,8 @@ $checkbox-color-off: #ccc;
 // Custom Checkbox Styles
 .customCheckbox {
   position: relative;
-  display: inline-flex;
-  align-items: center;
+  display: inline-flex; // Use inline-flex for better alignment control
+  align-items: center;  // Center-aligns checkbox contents vertically
   justify-content: center;
   width: 24px;
   height: 24px;
@@ -67,9 +67,6 @@ $checkbox-color-off: #ccc;
       border: solid white;
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
-      left: 50%;
-      top: 40%;
-      transform: translate(-50%, -50%) rotate(45deg); // Center-aligns the checkmark inside the checkbox
     }
   }
 
@@ -82,11 +79,10 @@ $checkbox-color-off: #ccc;
   }
 }
 
-
 // Styling for each item in the shopping list
 .shoppingListItem {
   display: flex;
-  align-items: flex-start; // Align items at the top for multi-line text alignment
+  align-items: flex-start;
   justify-content: space-between;
   padding: 1rem;
   border-bottom: 1px solid #e0e0e0;
@@ -101,20 +97,21 @@ $checkbox-color-off: #ccc;
 // Item details (checkbox, name, and quantity controls)
 .itemDetails {
   display: flex;
-  align-items: flex-start; // Ensures alignment with multi-line text
+  align-items: center;
   gap: 1rem;
   flex: 1;
   min-width: 0;
+  flex-wrap: wrap;
 }
 
-// Styling for the item name to allow text wrapping
+// Styling for the item name to allow text overflow handling
 .itemName {
-  white-space: normal; // Allows line breaks
-  word-break: break-word;
-  max-width: 100%;
-  flex: 1;
-  line-height: 1.3; // Adjust line height for better readability
-  margin-right: 1rem;
+  white-space: nowrap; // Prevent text from wrapping
+  overflow: hidden; // Hide overflowing text
+  text-overflow: ellipsis; // Show "..." for overflow
+  max-width: 100%; // Use available space
+  display: inline-block;
+  vertical-align: middle;
 }
 
 // Quantity controls for better alignment
@@ -211,7 +208,7 @@ $checkbox-color-off: #ccc;
   cursor: pointer;
   transition: background-color 0.2s;
   font-size: clamp(0.9rem, 1vw + 0.5rem, 1.25rem);
-  align-self: flex-start; // Aligns delete button at the top of the container
+  align-self: flex-start;
 
   &:hover {
     background-color: darken($delete-button-color, 10%);
@@ -230,6 +227,7 @@ $checkbox-color-off: #ccc;
   border: none;
   border-radius: 50px;
   padding: 0.5rem 1rem;
+  cursor: pointer;
   gap: 0.75rem;
   font-size: clamp(0.9rem, 1vw + 0.5rem, 1.25rem);
 
@@ -259,4 +257,15 @@ $checkbox-color-off: #ccc;
 .shoppingListItems::-webkit-scrollbar-track {
   background-color: #f0f0f0;
   border-radius: 4px;
+}
+
+// Responsive adjustments for smaller screens
+@media (max-width: 600px) {
+  .itemName {
+    font-size: 0.9rem;
+  }
+
+  .iconOnlyButton, .iconOnlyRemoveButton {
+    padding: 0.4rem 0.6rem;
+  }
 }

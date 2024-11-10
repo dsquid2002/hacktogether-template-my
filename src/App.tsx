@@ -1,23 +1,27 @@
-
-import React from 'react';
-import ShoppingList from './Pages/ShoppingList/ShoppingList';
+// App.tsx
+import React, { useState } from 'react';
+import ShoppingListSessionJoiner from './Pages/ShoppingList/ShoppingListSessionJoiner';
 
 const App: React.FC = () => {
-  // A simple onDelete function that will log a message to the console
-  const handleDelete = () => {
-    console.log('Delete action triggered for the shopping list');
+  const [plannerType, setPlannerType] = useState<string | null>(null);
+
+  const renderPlanner = () => {
+    switch (plannerType) {
+      case 'shopping':
+        return <ShoppingListSessionJoiner />;
+      default:
+        return (
+          <div>
+            <h1>Select a Planner</h1>
+            <button onClick={() => setPlannerType('shopping')}>Shopping List</button>
+            <button onClick={() => setPlannerType('trip')}>Trip Planner</button>
+            <button onClick={() => setPlannerType('gathering')}>Gathering Planner</button>
+          </div>
+        );
+    }
   };
 
-  return (
-    <div>
-      {/* Render a single ShoppingList with required props */}
-      <ShoppingList
-        id={1}
-        name="Groceries"
-        onDelete={handleDelete} // Pass the delete handler
-      />
-    </div>
-  );
+  return <div>{renderPlanner()}</div>;
 };
 
 export default App;

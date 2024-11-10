@@ -13,9 +13,11 @@
   },
   "dependencies": {
     "hacktogether-template": "file:",
+    "primeicons": "^7.0.0",
     "primereact": "^10.8.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-icons": "^5.3.0",
     "react-together": "^0.2.0"
   },
   "devDependencies": {

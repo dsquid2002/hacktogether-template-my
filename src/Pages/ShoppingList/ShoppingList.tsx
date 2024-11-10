@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useStateTogether } from 'react-together';
 import { InputText } from 'primereact/inputtext';
-import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { Divider } from 'primereact/divider';
+import { FaTrash, FaPlus, FaMinus, FaTimes } from 'react-icons/fa';
 import styles from '../../styles/ShoppingList/ShoppingList.module.scss';
 
 interface Item {
@@ -16,7 +16,7 @@ interface Item {
 // Define props inline instead of using ShoppingListProps interface
 const ShoppingList: React.FC<{ id: number; name: string; onDelete: () => void }> = ({ id, name, onDelete }) => {
   const [items, setItems] = useStateTogether<Item[]>(`items_${id}`, []);
-  const [inputValue, setInputValue] = useStateTogether<string>(`input_value_${id}`, '');
+  const [inputValue, setInputValue] = useState<string>(''); 
 
   const addItem = () => {
     if (inputValue.trim() !== '') {
@@ -55,8 +55,7 @@ const ShoppingList: React.FC<{ id: number; name: string; onDelete: () => void }>
     setItems(
       items.map((item) =>
         item.id === itemId && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
+          ? { ...item, quantity: item.quantity - 1 } : item
       )
     );
   };
@@ -65,12 +64,12 @@ const ShoppingList: React.FC<{ id: number; name: string; onDelete: () => void }>
     <Card className="p-shadow-5" style={{ marginBottom: '1rem' }}>
       <div className={styles['cardTitleContainer']}>
         <h2 className={styles['cardTitle']}>{name}</h2>
-        <Button
-          label="Delete List"
-          icon="pi pi-trash"
+        <button
           className={styles['deleteButton']}
           onClick={onDelete}
-        />
+        >
+          <FaTrash /> Delete List
+        </button>
       </div>
 
       <div className={`p-inputgroup ${styles['inputGroup']}`}>
@@ -79,12 +78,9 @@ const ShoppingList: React.FC<{ id: number; name: string; onDelete: () => void }>
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Add an item"
         />
-        <Button
-          label="Add"
-          icon="pi pi-plus"
-          onClick={addItem}
-          className={styles['roundedButton']}
-        />
+        <button onClick={addItem} className={styles['roundedButton']}>
+          <FaPlus /> Add
+        </button>
       </div>
       <Divider />
 
@@ -111,25 +107,28 @@ const ShoppingList: React.FC<{ id: number; name: string; onDelete: () => void }>
                   {item.name}
                 </span>
                 <div className={styles['quantityControls']}>
-                  <Button
-                    icon="pi pi-minus"
+                  <button
                     className={`${styles['iconOnlyButton']} p-button-text p-button-sm`}
                     onClick={() => decreaseQuantity(item.id)}
                     disabled={item.quantity <= 1}
-                  />
+                  >
+                    <FaMinus />
+                  </button>
                   <span className={styles['quantity']}>{item.quantity}</span>
-                  <Button
-                    icon="pi pi-plus"
+                  <button
                     className={`${styles['iconOnlyButton']} p-button-text p-button-sm`}
                     onClick={() => increaseQuantity(item.id)}
-                  />
+                  >
+                    <FaPlus />
+                  </button>
                 </div>
               </div>
-              <Button
-                icon="pi pi-times"
+              <button
                 className={`${styles['iconOnlyRemoveButton']} p-button-text p-button-plain`}
                 onClick={() => deleteItem(item.id)}
-              />
+              >
+                <FaTimes />
+              </button>
             </div>
           ))
         )}
